@@ -21,15 +21,28 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
+const fs = require('fs')
+const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789"
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.4",
+  defaultNetwork: "hardhat",
+  solidity: {
+    version: "0.8.4",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
   networks: {
-    ropsten: {
-      url: process.env.ROPSTEN_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    hardhat: {
+      chainId: 1337
     },
+    mumbai: {
+      url: "https://rpc-mumbai.matic.today",
+      accounts: [privateKey]
+    }
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
@@ -45,29 +58,29 @@ export default config;
 
 
 
-/* hardhat.config.js */
-require("@nomiclabs/hardhat-waffle")
-const fs = require('fs')
-const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789"
+// /* hardhat.config.js */
+// require("@nomiclabs/hardhat-waffle")
+// const fs = require('fs')
+// const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789"
 
-module.exports = {
-  defaultNetwork: "hardhat",
-  networks: {
-    hardhat: {
-      chainId: 1337
-    },
-    mumbai: {
-      url: "https://rpc-mumbai.matic.today",
-      accounts: [privateKey]
-    }
-  },
-  solidity: {
-    version: "0.8.4",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
-      }
-    }
-  }
-}
+// module.exports = {
+//   defaultNetwork: "hardhat",
+//   networks: {
+//     hardhat: {
+//       chainId: 1337
+//     },
+//     mumbai: {
+//       url: "https://rpc-mumbai.matic.today",
+//       accounts: [privateKey]
+//     }
+//   },
+//   solidity: {
+//     version: "0.8.4",
+//     settings: {
+//       optimizer: {
+//         enabled: true,
+//         runs: 200
+//       }
+//     }
+//   }
+// }
