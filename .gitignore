@@ -4,6 +4,7 @@ coverage
 coverage.json
 typechain
 secret
+config.js
 
 
 #Hardhat files
