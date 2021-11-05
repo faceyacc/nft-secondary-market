@@ -1,3 +1,4 @@
+
 import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
@@ -9,6 +10,10 @@ import {
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 
+import { Badge, Box, chakra, ChakraProvider, Flex, Heading, Icon, Tooltip } from "@chakra-ui/react";
+import * as React from "react";
+import { render } from "react-dom";
+import { data } from 'autoprefixer'
 
 function Home() {
   const [nfts, setNfts] = useState([])
@@ -111,6 +116,4 @@ function Home() {
     )
 }
 
-
-  
 export default Home

@@ -4,7 +4,5 @@
   "/_document": "pages/_document.js",
   "/create-items": "pages/create-items.js",
   "/": "pages/index.js",
-  "/my-assets": "pages/my-assets.js",
-  "/creator-dashboard": "pages/creator-dashboard.js",
   "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }
