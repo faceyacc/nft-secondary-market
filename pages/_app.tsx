@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import '../styles/base.css'
-
 
 import * as React from "react"
 import {
@@ -10,6 +9,7 @@ import {
   Image,
   Badge,
   Text,
+  Link,
   Icon,
   Stack,
   Avatar,
@@ -46,7 +46,7 @@ const data = {
 
 export default function myApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider resetCSS>
+    <ChakraProvider>
 
       <Box width="2000" height="60px" bg="white" borderWidth="1px" rounded="lg" shadow="md" objectPosition="flex">
         <HStack spacing="30px" flex="1">
@@ -55,20 +55,20 @@ export default function myApp({ Component, pageProps }: AppProps) {
           </Box>
 
           <Heading>
-            
-          <Link href="/index">
-            fullNode
-          </Link>
+
+            <NextLink href={'/index'} passHref>
+              <Link>Link</Link>
+            </NextLink>
 
           </Heading>
 
-          <Link href="/index">
-            Home
-          </Link>
+          <NextLink href={'/index'} passHref>
+            <Link>Home</Link>
+          </NextLink>
 
-          <Link href="/create-items">
-            Create Items
-          </Link>
+          <NextLink href={'/create-items.tsx'} passHref>
+            <Link>create</Link>
+          </NextLink>
 
           <Box w="300px" h="40px" bg="gray.100" flex="2" shadow="sm" maxW="500">
             <Text flex="1">
