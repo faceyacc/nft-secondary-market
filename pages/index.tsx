@@ -9,6 +9,23 @@ import {
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 
+// 1. import `ChakraProvider` component
+import { Box, Heading, ChakraProvider } from "@chakra-ui/react"
+
+function App({ Component }) {
+  // 2. Use at the root of your app
+  return (
+    <ChakraProvider>
+
+      <Box>
+        <Heading>
+          WELCOME TO fullNode NFT Marketplace
+        </Heading>
+      </Box>
+
+    </ChakraProvider>
+  )
+}
 
 function Home() {
   const [nfts, setNfts] = useState([])
@@ -35,30 +52,30 @@ function Home() {
 
   async function loadNFTs() {
     // Query for unsold market items.
-    const provider =  new ethers.providers.JsonRpcProvider()
+    const provider = new ethers.providers.JsonRpcProvider()
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider)
     const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, provider)
-    
+
     // Fetch all market items that are for sale.
-    const data:nftType[] = await marketContract.fetchMarketItems()  
+    const data: nftType[] = await marketContract.fetchMarketItems()
 
 
     // Map over items retruned from smart contract.
-    const items = await Promise.all(data.map(async (i:nftType) => {
+    const items = await Promise.all(data.map(async (i: nftType) => {
       const tokenUri: string = await tokenContract.tokenURI(i.tokenId)
-      
+
       // Axios call returns meta data of NFT : https://gateway.pinata.cloud/ipfs/QmSvBcb4tjdFpajGJhbFAWeK3JAxCdNQLQtr6ZdiSi42V2
-      const meta: AxiosResponse<metadataType> = await axios.get(tokenUri) 
+      const meta: AxiosResponse<metadataType> = await axios.get(tokenUri)
       const price: string = ethers.utils.formatUnits(i.price.toString(), 'ether')
 
       // return NFTs
       let item: nftType = {
-        price, 
+        price,
         tokenId: i.tokenId,
         seller: i.seller,
         owner: i.owner,
         image: meta.data.image,
-        name: meta.data.name, 
+        name: meta.data.name,
         desription: meta.data.desription,
       }
       return item
@@ -83,9 +100,13 @@ function Home() {
     await transaction.wait()
     loadNFTs()
   }
-  if(loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>) 
-    return (
-      <div className="flex justify-center">
+  if (loadingState === 'loaded' && !nfts.length) return (
+
+    <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>
+
+  )
+  return (
+    <div className="flex justify-center">
       <div className="px-4" style={{ maxWidth: '1600px' }}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
@@ -108,9 +129,9 @@ function Home() {
         </div>
       </div>
     </div>
-    )
+  )
 }
 
 
-  
+
 export default Home

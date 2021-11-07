@@ -1,8 +1,12 @@
 {
   "dependencies": {
+    "@chakra-ui/react": "^1.6.12",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@openzeppelin/contracts": "^4.3.2",
     "autoprefixer": "^10.3.7",
     "axios": "^0.22.0",
+    "framer-motion": "^4.1.17",
     "install": "^0.13.0",
     "ipfs-http-client": "^50.1.2",
     "next": "^11.1.2",
