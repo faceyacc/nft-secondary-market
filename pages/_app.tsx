@@ -1,8 +1,12 @@
-import { Box, ChakraProvider, Heading, HStack, Input, Link, Text } from '@chakra-ui/react'
+import { Box, Center, ChakraProvider, Flex, Heading, HStack, Input, Link, Text } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
 import NextLink from 'next/link'
 import React from 'react'
 import '../styles/base.css'
+
+import { create as ipfsHttpClient } from 'ipfs-http-client'
+
+const client = ipfsHttpClient({ host: "ipfs.infura.io", port: 5001, protocol: "https" })
 
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -11,57 +15,62 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
     <ChakraProvider>
 
-    <Box width="2000" height="80px" bg="white" borderWidth="1px" rounded="lg" shadow="md" objectPosition="flex">
-      <HStack spacing="30px" flex="1">
-        <Box width="10px">
+      <Box  width="2000" height="70" bg="white" borderWidth="1px" rounded="lg" shadow="md" objectPosition="flex" alignItems="center">
+        
+        <Center
+        
+        >
+          
+        <HStack alignItems="center" justify="center" spacing="20px">
+          
 
-        </Box>
+          <Heading>
 
-        <Heading>
+            <NextLink href={'/'} passHref>
+              <Link>fullNode</Link>
+            </NextLink>
+
+          </Heading>
 
           <NextLink href={'/'} passHref>
-            <Link>fullNode</Link>
+            <Link>Home</Link>
           </NextLink>
 
-        </Heading>
+          <NextLink href={'/create-items'} passHref>
+            <Link>Create NFT</Link>
+          </NextLink>
 
-        <NextLink href={'/'} passHref>
-          <Link>Home</Link>
-        </NextLink>
-
-        <NextLink href={'/create-items'} passHref>
-          <Link>Create NFT</Link>
-        </NextLink>
-
-        <Box w="300px" h="40px" bg="gray.100" flex="2" shadow="sm" maxW="500">
-          <Text flex="1">
-            <Input placeholder="Search for NFTs" />
+          <Box w="300px" h="30px" bg="gray.100" flex="2" shadow="sm" maxW="500">
+            <Text flex="1">
+              <Input placeholder="Search for NFTs" />
 
 
-          </Text>
-        </Box>
+            </Text>
+          </Box>
 
 
-        <Link href="/my-assets">
-          Your NFTs
-        </Link>
+          <Link href="/my-assets">
+            Your NFTs
+          </Link>
 
 
-        <Link href="/creator-dashboard">
-          Dashboard/Account
-        </Link>
+          <Link href="/creator-dashboard">
+            Dashboard
+          </Link>
 
-        <Box width="10px">
-
-        </Box>
+          
 
 
-      </HStack>
-    </Box>
+        </HStack>
 
-    <Component { ...pageProps } />
+        </Center>
+        
+        
+      </Box>
 
-  </ChakraProvider>
+      <Component {...pageProps} />
+
+    </ChakraProvider>
     // <div>
     //   <nav className="border-b p-6">
     //     <p className="text-4xl font-bold">NFT Secondary Marketplace</p>
@@ -90,7 +99,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     //       </NextLink>
     //     </div>
     //   </nav>
-      
+
     // </div>
   )
 }

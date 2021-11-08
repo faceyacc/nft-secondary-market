@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 // import { create as ipfsHttpClient } from 'ipfs-http-client'
 import Web3Modal from "web3modal"
 import {
-    nftaddress, nftmarketaddress
+  nftaddress, nftmarketaddress
 } from '../config'
 
 // const client = ipfsHttpClient()
@@ -14,71 +14,155 @@ import {
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 import axios, { AxiosResponse } from "axios";
+import { Box, ChakraProvider, Heading, HStack, Input, Link, Text, Stack, Button, Center, Avatar, Flex } from '@chakra-ui/react'
 
 interface metadataType {
-    image: string,
-    name: string
-    desription: string,
-  }
+  image: string,
+  name: string
+  desription: string,
+}
 
-  type nftType = {
-    price: string
-    tokenId: number
-    seller: string
-    owner: string
-    sold: unknown
-    image: string
-  }
+type nftType = {
+  price: string
+  tokenId: number
+  seller: string
+  owner: string
+  sold: unknown
+  image: string
+}
 
 
 
 export default function CreatorDashboard() {
-    const [nfts, setNfts] = useState([])
-    const [sold, setSold] = useState([])
-    const [loadingState, setLoadingState] = useState('not-loaded')
-    useEffect(() => {
-        loadNFTs()
-    }, [])
-    async function loadNFTs() {
-        const web3Modal = new Web3Modal({
-            network: "mainnet",
-            cacheProvider: true,
-        })
-        const connection = await web3Modal.connect()
-        const provider = new ethers.providers.Web3Provider(connection)
-        const signer = provider.getSigner()
+  const [nfts, setNfts] = useState([])
+  const [sold, setSold] = useState([])
+  const [loadingState, setLoadingState] = useState('not-loaded')
+  useEffect(() => {
+    loadNFTs()
+  }, [])
+  async function loadNFTs() {
+    const web3Modal = new Web3Modal({
+      network: "mainnet",
+      cacheProvider: true,
+    })
+    const connection = await web3Modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
+    const signer = provider.getSigner()
 
-        const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
-        const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider)
-        const data = await marketContract.fetchItemsCreated()
+    const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+    const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider)
+    const data = await marketContract.fetchItemsCreated()
 
-        const items:nftType[] = await Promise.all(data.map(async (i:nftType) => {
-            const tokenUri = await tokenContract.tokenURI(i.tokenId)
-            const meta:AxiosResponse<metadataType> = await axios.get(tokenUri)
-            let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
-            let item:nftType = {
-                price, 
-                tokenId: i.tokenId,
-                seller: i.seller, 
-                owner: i.owner,
-                sold: i.sold,
-                image: meta.data.image,
-            }
-            return item
-        }))
+    const items: nftType[] = await Promise.all(data.map(async (i: nftType) => {
+      const tokenUri = await tokenContract.tokenURI(i.tokenId)
+      const meta: AxiosResponse<metadataType> = await axios.get(tokenUri)
+      let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
+      let item: nftType = {
+        price,
+        tokenId: i.tokenId,
+        seller: i.seller,
+        owner: i.owner,
+        sold: i.sold,
+        image: meta.data.image,
+      }
+      return item
+    }))
 
-        // Array of items that have been sold
-        const soldItems = items.filter((i) => {i.sold})
-        setSold(soldItems)
-        setNfts(items)
-        setLoadingState('loaded')
-    }
-    if  (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No assets created</h1>)
-    return (
-        <div>
+    // Array of items that have been sold
+    const soldItems = items.filter((i) => { i.sold })
+    setSold(soldItems)
+    setNfts(items)
+    setLoadingState('loaded')
+  }
+  if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No assets created</h1>)
+  return (
+
+    <ChakraProvider>
+      <Box height="px">
+
+      </Box>
+      <Center py={3}>
+        <Box
+          maxW={'2000px'}
+          width="800px"
+
+          maxHeight="300px"
+          colorScheme="teal"
+          boxShadow={'2xl'}
+          rounded={'md'}
+          overflow={'hidden'}>
+
+          <Flex px={20} py={10} justify={'left'}>
+            <Avatar
+
+              size={'xxl'}
+              src={
+                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
+              }
+              alt={'Author'}
+              css={{
+                border: '2px solid white',
+              }}
+            />
+
+            <Box px={10}>
+              <Stack spacing={0} align={'right'} mb={5} px={0}>
+                <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
+                  John Doe
+                </Heading>
+                <Text color={'gray.500'}>Frontend Developer</Text>
+
+
+
+              </Stack>
+
+              <Stack direction={'row'} justify={'right'} spacing={6}>
+                <Stack spacing={0} align={'center'}>
+                  <Text fontWeight={600}>23k</Text>
+                  <Text fontSize={'sm'} color={'gray.500'}>
+                    Followers
+                  </Text>
+                </Stack>
+                <Stack spacing={0} align={'right'}>
+                  <Text fontWeight={600}>23k</Text>
+                  <Text fontSize={'sm'} color={'gray.500'}>
+                    Followers
+                  </Text>
+                </Stack>
+              </Stack>
+
+              <Button
+                w={'full'}
+                mt={8}
+                bg='gray.900'
+                color={'white'}
+                rounded={'md'}
+                _hover={{
+                  transform: 'translateY(-2px)',
+                  boxShadow: 'lg',
+                }}>
+                Follow
+              </Button>
+            </Box>
+
+          </Flex>
+
+
+        </Box>
+      </Center>
+
+
+
+      {/* test
+test 
+test  */}
+
+
+
+      <div>
         <div className="p-4">
           <h2 className="text-2xl py-2">Items Created</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {
               nfts.map((nft, i) => (
                 <div key={i} className="border shadow rounded-xl overflow-hidden">
@@ -91,7 +175,7 @@ export default function CreatorDashboard() {
             }
           </div>
         </div>
-          <div className="px-4">
+        <div className="px-4">
           {
             Boolean(sold.length) && (
               <div>
@@ -111,7 +195,17 @@ export default function CreatorDashboard() {
               </div>
             )
           }
-          </div>
+        </div>
       </div>
-    )
+
+    </ChakraProvider>
+
+
+
+
+
+
+
+
+  )
 }
