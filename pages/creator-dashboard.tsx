@@ -83,7 +83,7 @@ export default function CreatorDashboard() {
       </Box>
       <Center py={3}>
         <Box
-          maxW={'2000px'}
+          maxW={'3000px'}
           width="800px"
 
           maxHeight="300px"
@@ -95,9 +95,9 @@ export default function CreatorDashboard() {
           <Flex px={20} py={10} justify={'left'}>
             <Avatar
 
-              size={'xxl'}
+              size={'xl'}
               src={
-                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1024px-MetaMask_Fox.svg.png'
               }
               alt={'Author'}
               css={{
@@ -108,25 +108,22 @@ export default function CreatorDashboard() {
             <Box px={10}>
               <Stack spacing={0} align={'right'} mb={5} px={0}>
                 <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-                  John Doe
+                  Username
                 </Heading>
-                <Text color={'gray.500'}>Frontend Developer</Text>
-
-
-
+                <Text color={'gray.500'}>Enter Bio Here</Text>
               </Stack>
 
               <Stack direction={'row'} justify={'right'} spacing={6}>
                 <Stack spacing={0} align={'center'}>
-                  <Text fontWeight={600}>23k</Text>
+                  <Text fontWeight={600}># NFTs Created</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>
-                    Followers
+                    NFTs Created
                   </Text>
                 </Stack>
                 <Stack spacing={0} align={'right'}>
-                  <Text fontWeight={600}>23k</Text>
+                  <Text fontWeight={600}># NFTS Owned</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>
-                    Followers
+                    NFTs Owned
                   </Text>
                 </Stack>
               </Stack>
@@ -141,27 +138,49 @@ export default function CreatorDashboard() {
                   transform: 'translateY(-2px)',
                   boxShadow: 'lg',
                 }}>
-                Follow
+                Follow User
               </Button>
             </Box>
-
           </Flex>
+        </Box>
 
+
+      </Center>
+
+      <Center py={3}>
+        <Box
+          bgColor="white"
+          maxW={'3000px'}
+          width="800px"
+          height="50px"
+          boxShadow={'2xl'}
+          rounded={'md'}
+          overflow={'hidden'}>
+
+          <Center>
+            <HStack>
+              <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>Owned</Heading>
+
+
+              <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>Created</Heading>
+
+
+              <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>Saved</Heading>
+            </HStack>
+          </Center>
 
         </Box>
+
       </Center>
 
 
 
-      {/* test
-test 
-test  */}
 
-
+      {/* Split between profile section and feed*/}
 
       <div>
         <div className="p-4">
-          <h2 className="text-2xl py-2">Items Created</h2>
+          {/* <h2 className="text-2xl py-2">Items Created</h2> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {
               nfts.map((nft, i) => (
@@ -198,14 +217,195 @@ test  */}
         </div>
       </div>
 
+
+      <HStack justify="center" p="0">
+        <Center py={2}>
+          {/* Left Item Box */}
+
+          <Box
+            role={'group'}
+            p={6}
+            maxW={'330px'}
+            w={'full'}
+            bg={"white"}
+            boxShadow={'2xl'}
+            rounded={'lg'}
+            pos={'relative'}
+            zIndex={1}>
+            <Box
+              rounded={'lg'}
+              mt={-12}
+              pos={'relative'}
+              height={'230px'}
+              _after={{
+                transition: 'all .3s ease',
+                content: '""',
+                w: 'full',
+                h: 'full',
+                pos: 'absolute',
+                top: 5,
+                left: 0,
+                // backgroundImage: `url(${IMAGE})`,
+                filter: 'blur(15px)',
+                zIndex: -1,
+              }}
+              _groupHover={{
+                _after: {
+                  filter: 'blur(20px)',
+                },
+              }}>
+
+            </Box>
+
+
+            <Stack pt={10} align={'center'}>
+              <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                Brand
+              </Text>
+              <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                Nice Chair, pink
+              </Heading>
+              <Stack direction={'row'} align={'center'}>
+                <Text fontWeight={800} fontSize={'xl'}>
+                  $57
+                </Text>
+                <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text>
+              </Stack>
+            </Stack>
+
+
+          </Box>
+
+          {/* Left Padding Box */}
+          <Box width="40">
+          </Box>
+
+          {/* Middle Item Box */}
+          <Box
+            role={'group'}
+            p={6}
+            maxW={'330px'}
+            w={'full'}
+            bg={"white"}
+            boxShadow={'2xl'}
+            rounded={'lg'}
+            pos={'relative'}
+            zIndex={1}>
+            <Box
+              rounded={'lg'}
+              mt={-12}
+              pos={'relative'}
+              height={'230px'}
+              _after={{
+                transition: 'all .3s ease',
+                content: '""',
+                w: 'full',
+                h: 'full',
+                pos: 'absolute',
+                top: 5,
+                left: 0,
+                // backgroundImage: `url(${IMAGE})`,
+                filter: 'blur(15px)',
+                zIndex: -1,
+              }}
+              _groupHover={{
+                _after: {
+                  filter: 'blur(20px)',
+                },
+              }}>
+
+            </Box>
+
+
+            <Stack pt={10} align={'center'}>
+              <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                Brand
+              </Text>
+              <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                Nice Chair, pink
+              </Heading>
+              <Stack direction={'row'} align={'center'}>
+                <Text fontWeight={800} fontSize={'xl'}>
+                  $57
+                </Text>
+                <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text>
+              </Stack>
+            </Stack>
+
+
+          </Box>
+
+          {/* Right Padding Box */}
+          <Box width="40">
+
+          </Box>
+
+
+          {/* Right Item Box */}
+          <Box
+            role={'group'}
+            p={6}
+            maxW={'330px'}
+            w={'full'}
+            bg={"white"}
+            boxShadow={'2xl'}
+            rounded={'lg'}
+            pos={'relative'}
+            zIndex={1}>
+            <Box
+              rounded={'lg'}
+              mt={-12}
+              pos={'relative'}
+              height={'230px'}
+              _after={{
+                transition: 'all .3s ease',
+                content: '""',
+                w: 'full',
+                h: 'full',
+                pos: 'absolute',
+                top: 5,
+                left: 0,
+                // backgroundImage: `url(${IMAGE})`,
+                filter: 'blur(15px)',
+                zIndex: -1,
+              }}
+              _groupHover={{
+                _after: {
+                  filter: 'blur(20px)',
+                },
+              }}>
+
+            </Box>
+
+
+            <Stack pt={10} align={'center'}>
+              <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                Brand
+              </Text>
+              <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                Nice Chair, pink
+              </Heading>
+              <Stack direction={'row'} align={'center'}>
+                <Text fontWeight={800} fontSize={'xl'}>
+                  $57
+                </Text>
+                <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text>
+              </Stack>
+            </Stack>
+
+
+          </Box>
+        </Center>
+
+
+      </HStack>
+
     </ChakraProvider>
-
-
-
-
-
-
-
-
   )
 }
