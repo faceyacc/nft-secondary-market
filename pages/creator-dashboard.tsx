@@ -14,7 +14,7 @@ import {
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 import axios, { AxiosResponse } from "axios";
-import { Box, ChakraProvider, Heading, HStack, Input, Link, Text, Stack, Button, Center, Avatar, Flex } from '@chakra-ui/react'
+import { Box, ChakraProvider, Heading, HStack, Input, Link, Text, Stack, Button, Center, Avatar, Flex, Image, VStack } from '@chakra-ui/react'
 
 interface metadataType {
   image: string,
@@ -88,7 +88,7 @@ export default function CreatorDashboard() {
 
           maxHeight="300px"
           colorScheme="teal"
-          boxShadow={'2xl'}
+          boxShadow={'lg'}
           rounded={'md'}
           overflow={'hidden'}>
 
@@ -159,13 +159,17 @@ export default function CreatorDashboard() {
 
           <Center>
             <HStack>
-              <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>Owned</Heading>
+              <Heading fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Owned</Heading>
+
+              <Box width="20"></Box>
 
 
-              <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>Created</Heading>
+              <Heading fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Created</Heading>
+
+              <Box width="20"></Box>
 
 
-              <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>Saved</Heading>
+              <Heading fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Saved</Heading>
             </HStack>
           </Center>
 
@@ -217,195 +221,394 @@ export default function CreatorDashboard() {
         </div>
       </div>
 
+      <VStack>
 
-      <HStack justify="center" p="0">
-        <Center py={2}>
-          {/* Left Item Box */}
+        <HStack justify="center" p="0">
 
-          <Box
-            role={'group'}
-            p={6}
-            maxW={'330px'}
-            w={'full'}
-            bg={"white"}
-            boxShadow={'2xl'}
-            rounded={'lg'}
-            pos={'relative'}
-            zIndex={1}>
+          <Center justify="center" py={2}>
+
+            {/* Left Item Box */}
+
             <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
               rounded={'lg'}
-              mt={-12}
               pos={'relative'}
-              height={'230px'}
-              _after={{
-                transition: 'all .3s ease',
-                content: '""',
-                w: 'full',
-                h: 'full',
-                pos: 'absolute',
-                top: 5,
-                left: 0,
-                // backgroundImage: `url(${IMAGE})`,
-                filter: 'blur(15px)',
-                zIndex: -1,
-              }}
-              _groupHover={{
-                _after: {
-                  filter: 'blur(20px)',
-                },
-              }}>
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text> */}
+                </Stack>
+              </Stack>
+
 
             </Box>
 
-
-            <Stack pt={10} align={'center'}>
-              <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                Brand
-              </Text>
-              <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                Nice Chair, pink
-              </Heading>
-              <Stack direction={'row'} align={'center'}>
-                <Text fontWeight={800} fontSize={'xl'}>
-                  $57
-                </Text>
-                <Text textDecoration={'line-through'} color={'gray.600'}>
-                  $199
-                </Text>
-              </Stack>
-            </Stack>
-
-
-          </Box>
-
-          {/* Left Padding Box */}
-          <Box width="40">
-          </Box>
-
-          {/* Middle Item Box */}
-          <Box
-            role={'group'}
-            p={6}
-            maxW={'330px'}
-            w={'full'}
-            bg={"white"}
-            boxShadow={'2xl'}
-            rounded={'lg'}
-            pos={'relative'}
-            zIndex={1}>
-            <Box
-              rounded={'lg'}
-              mt={-12}
-              pos={'relative'}
-              height={'230px'}
-              _after={{
-                transition: 'all .3s ease',
-                content: '""',
-                w: 'full',
-                h: 'full',
-                pos: 'absolute',
-                top: 5,
-                left: 0,
-                // backgroundImage: `url(${IMAGE})`,
-                filter: 'blur(15px)',
-                zIndex: -1,
-              }}
-              _groupHover={{
-                _after: {
-                  filter: 'blur(20px)',
-                },
-              }}>
-
+            {/* Left Padding Box */}
+            <Box width="10">
             </Box>
 
 
-            <Stack pt={10} align={'center'}>
-              <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                Brand
-              </Text>
-              <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                Nice Chair, pink
-              </Heading>
-              <Stack direction={'row'} align={'center'}>
-                <Text fontWeight={800} fontSize={'xl'}>
-                  $57
-                </Text>
-                <Text textDecoration={'line-through'} color={'gray.600'}>
-                  $199
-                </Text>
-              </Stack>
-            </Stack>
+            {/* center Item Box */}
 
-
-          </Box>
-
-          {/* Right Padding Box */}
-          <Box width="40">
-
-          </Box>
-
-
-          {/* Right Item Box */}
-          <Box
-            role={'group'}
-            p={6}
-            maxW={'330px'}
-            w={'full'}
-            bg={"white"}
-            boxShadow={'2xl'}
-            rounded={'lg'}
-            pos={'relative'}
-            zIndex={1}>
             <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
               rounded={'lg'}
-              mt={-12}
               pos={'relative'}
-              height={'230px'}
-              _after={{
-                transition: 'all .3s ease',
-                content: '""',
-                w: 'full',
-                h: 'full',
-                pos: 'absolute',
-                top: 5,
-                left: 0,
-                // backgroundImage: `url(${IMAGE})`,
-                filter: 'blur(15px)',
-                zIndex: -1,
-              }}
-              _groupHover={{
-                _after: {
-                  filter: 'blur(20px)',
-                },
-              }}>
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text> */}
+                </Stack>
+              </Stack>
+
 
             </Box>
 
+            {/* center Padding Box */}
+            <Box width="10">
+            </Box>
 
-            <Stack pt={10} align={'center'}>
-              <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                Brand
-              </Text>
-              <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                Nice Chair, pink
-              </Heading>
-              <Stack direction={'row'} align={'center'}>
-                <Text fontWeight={800} fontSize={'xl'}>
-                  $57
+            {/* right Item Box */}
+
+            <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              pos={'relative'}
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
                 </Text>
-                <Text textDecoration={'line-through'} color={'gray.600'}>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
                   $199
-                </Text>
+                </Text> */}
+                </Stack>
               </Stack>
-            </Stack>
 
 
-          </Box>
-        </Center>
+            </Box>
+          </Center>
+        </HStack>
+
+        <Box height="10">
+
+        </Box>
+
+        <HStack justify="center" p="0">
+
+          <Center justify="center" py={2}>
+
+            {/* Left Item Box */}
+
+            <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              pos={'relative'}
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+        $199
+      </Text> */}
+                </Stack>
+              </Stack>
 
 
-      </HStack>
+            </Box>
 
-    </ChakraProvider>
+            {/* Left Padding Box */}
+            <Box width="10">
+            </Box>
+
+
+            {/* center Item Box */}
+
+            <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              pos={'relative'}
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+        $199
+      </Text> */}
+                </Stack>
+              </Stack>
+
+
+            </Box>
+
+            {/* center Padding Box */}
+            <Box width="10">
+            </Box>
+
+            {/* right Item Box */}
+
+            <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              pos={'relative'}
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+        $199
+      </Text> */}
+                </Stack>
+              </Stack>
+
+
+            </Box>
+          </Center>
+        </HStack>
+
+      </VStack>
+
+
+
+    </ChakraProvider >
   )
 }

@@ -2,6 +2,7 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import Web3Model from 'web3modal'
+import NextLink from 'next/link'
 import {
   nftaddress, nftmarketaddress
 } from '../config'
@@ -10,7 +11,7 @@ import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 
 // 1. import `ChakraProvider` component
-import { Box, Heading, ChakraProvider, Button, Flex, Stack, VStack, Text, Link} from "@chakra-ui/react"
+import { Box, Heading, ChakraProvider, Button, Flex, Stack, VStack, Text, Link, HStack, Center, Image } from "@chakra-ui/react"
 
 function App({ Component }) {
   // 2. Use at the root of your app
@@ -102,17 +103,9 @@ function Home() {
   }
   if (loadingState === 'loaded' && !nfts.length) return (
 
-    // <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>
+    <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>
 
-    <ChakraProvider>
-
-      <Box>
-        <Heading>
-          WELCOME TO fullNode NFT Marketplace
-        </Heading>
-      </Box>
-
-    </ChakraProvider>
+    
 
   )
   return (
@@ -137,9 +130,10 @@ function Home() {
               color={'white'}
               fontWeight={1100}
               lineHeight={1.2}>
-              FullNode - A secondary NFT Exchange
-              Create NFTs using MetaMask.
+              FullNode - An NFT Exchange
             </Heading>
+            <Heading color={'white'}>Create NFTs using MetaMask.</Heading>
+
             <Stack direction={'row'}>
               <Button
                 bg={'orange.400'}
@@ -153,20 +147,210 @@ function Home() {
                 rounded={'full'}
                 color={'black'}
                 _hover={{ bg: 'gray.100' }}
-                onClick={() =>
-                  <Link href={'/create-items'} passHref>
-                  </Link>
-                }
-
 
               >
-
-                Create an NFT
+                <NextLink href={'/create-items'} passHref>
+                  Create an NFT
+                </NextLink>
               </Button>
             </Stack>
           </Stack>
         </VStack>
       </Flex>
+
+      <VStack>
+
+        <HStack justify="center" p="0">
+
+          <Center justify="center" py={2}>
+
+            {/* Left Item Box */}
+
+            <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              pos={'relative'}
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text> */}
+                </Stack>
+              </Stack>
+
+
+            </Box>
+
+            {/* Left Padding Box */}
+            <Box width="10">
+            </Box>
+
+
+            {/* center Item Box */}
+
+            <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              pos={'relative'}
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text> */}
+                </Stack>
+              </Stack>
+
+
+            </Box>
+
+            {/* center Padding Box */}
+            <Box width="10">
+            </Box>
+
+            {/* right Item Box */}
+
+            <Box
+              role={'group'}
+              p={10}
+              maxW={'330px'}
+              w={'full'}
+              bg={"white"}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              pos={'relative'}
+              zIndex={1}>
+              <Box
+                rounded={'lg'}
+                mt={0}
+                pos={'relative'}
+                height={'230px'}
+                _after={{
+                  transition: 'all .3s ease',
+                  content: '""',
+                  w: 'full',
+                  h: 'full',
+                  pos: 'absolute',
+                  top: 5,
+                  left: 0,
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                _groupHover={{
+                  _after: {
+                    filter: 'blur(20px)',
+                  },
+                }}>
+
+                <Image size="sm" maxW="250" src="https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png" />
+
+              </Box>
+
+              <Stack pt={0} align={'center'}>
+                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+                  Brand
+                </Text>
+                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                  Example NFT
+                </Heading>
+                <Stack direction={'row'} align={'center'}>
+                  <Text fontWeight={800} fontSize={'xl'}>
+                    5 ETH
+                  </Text>
+                  {/* <Text textDecoration={'line-through'} color={'gray.600'}>
+                  $199
+                </Text> */}
+                </Stack>
+              </Stack>
+
+
+            </Box>
+          </Center>
+        </HStack>
+              
+
+      </VStack>
 
     </ChakraProvider>
 
