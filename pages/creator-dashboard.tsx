@@ -78,11 +78,12 @@ export default function CreatorDashboard() {
   return (
 
     <ChakraProvider>
-      <Box height="px">
+      <Box height="px" >
 
-      </Box>
-      <Center py={3}>
+      </Box >
+      <Center bgColor="blue.100" py={3}>
         <Box
+        color="white"
           maxW={'3000px'}
           width="800px"
 

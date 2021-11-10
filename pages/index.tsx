@@ -13,21 +13,6 @@ import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 // 1. import `ChakraProvider` component
 import { Box, Heading, ChakraProvider, Button, Flex, Stack, VStack, Text, Link, HStack, Center, Image } from "@chakra-ui/react"
 
-function App({ Component }) {
-  // 2. Use at the root of your app
-  return (
-    <ChakraProvider>
-
-      <Box>
-        <Heading>
-          WELCOME TO fullNode NFT Marketplace
-        </Heading>
-      </Box>
-
-    </ChakraProvider>
-  )
-}
-
 function Home() {
   const [nfts, setNfts] = useState([])
   const [loadingState, setLoadingState] = useState('not-loaded')
