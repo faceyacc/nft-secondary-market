@@ -15,56 +15,42 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
     <ChakraProvider>
 
-      <Box  width="2000" height="70" bg="white" borderWidth="1px" rounded="lg" shadow="md" objectPosition="flex" alignItems="center">
-        
-        <Center
-        
-        >
-          
-        <HStack alignItems="center" justify="center" spacing="20px">
-          
+      <Box width="2000" height="60px" bg="white" borderWidth="2px" rounded="lg"  objectPosition="flex" alignItems="center">
 
-          <Heading>
+        <Center>
+
+          <HStack alignItems="center" justify="center" spacing="20px">
+
+            <Heading>
+              <NextLink href={'/'} passHref>
+                <Link>fullNode</Link>
+              </NextLink>
+            </Heading>
 
             <NextLink href={'/'} passHref>
-              <Link>fullNode</Link>
+              <Link>Home</Link>
             </NextLink>
 
-          </Heading>
+            <NextLink href={'/create-items'} passHref>
+              <Link>Create NFT</Link>
+            </NextLink>
 
-          <NextLink href={'/'} passHref>
-            <Link>Home</Link>
-          </NextLink>
+            <Box h="30px" bgColor="white">
+              <Text>
+                <Input placeholder="Search for NFTs" />
+              </Text>
+            </Box>
 
-          <NextLink href={'/create-items'} passHref>
-            <Link>Create NFT</Link>
-          </NextLink>
+            <Link href="/my-assets">
+              Your NFTs
+            </Link>
 
-          <Box w="300px" h="30px" bg="gray.100" flex="2" shadow="sm" maxW="500">
-            <Text flex="1">
-              <Input placeholder="Search for NFTs" />
+            <Link href="/creator-dashboard">
+              Dashboard
+            </Link>
 
-
-            </Text>
-          </Box>
-
-
-          <Link href="/my-assets">
-            Your NFTs
-          </Link>
-
-
-          <Link href="/creator-dashboard">
-            Dashboard
-          </Link>
-
-          
-
-
-        </HStack>
-
+          </HStack>
         </Center>
-        
         
       </Box>
 

@@ -14,7 +14,7 @@ import {
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 import axios, { AxiosResponse } from "axios";
-import { Box, ChakraProvider, Heading, HStack, Input, Link, Text, Stack, Button, Center, Avatar, Flex, Image, VStack } from '@chakra-ui/react'
+import { Box, ChakraProvider, Container, Editable, EditablePreview, EditableInput, Heading, HStack, Input, Link, Text, Stack, Button, Center, Avatar, Flex, Image, VStack } from '@chakra-ui/react'
 
 interface metadataType {
   image: string,
@@ -83,12 +83,12 @@ export default function CreatorDashboard() {
       </Box >
       <Center bgColor="blue.100" py={3}>
         <Box
-        color="white"
+          bgColor="white"
           maxW={'3000px'}
           width="800px"
 
           maxHeight="300px"
-          colorScheme="teal"
+
           boxShadow={'lg'}
           rounded={'md'}
           overflow={'hidden'}>
@@ -109,9 +109,19 @@ export default function CreatorDashboard() {
             <Box px={10}>
               <Stack spacing={0} align={'right'} mb={5} px={0}>
                 <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-                  Username
+                  
+                <Editable defaultValue="Enter Username">
+                  <EditablePreview />
+                  <EditableInput />
+                </Editable>
                 </Heading>
-                <Text color={'gray.500'}>Enter Bio Here</Text>
+
+                <Editable color={'gray.500'} defaultValue="Enter bio">
+                  <EditablePreview />
+                  <EditableInput />
+                </Editable>
+
+
               </Stack>
 
               <Stack direction={'row'} justify={'right'} spacing={6}>
@@ -148,38 +158,36 @@ export default function CreatorDashboard() {
 
       </Center>
 
-      <Center py={3}>
+      <Center py={3} bgColor="white">
         <Box
           bgColor="white"
           maxW={'3000px'}
           width="800px"
           height="50px"
-          boxShadow={'2xl'}
+          boxShadow={'xl'}
           rounded={'md'}
           overflow={'hidden'}>
-
+          <Box height="10px"></Box>
           <Center>
+
             <HStack>
-              <Heading fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Owned</Heading>
+              <Heading color={'gray.500'} fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Owned</Heading>
 
               <Box width="20"></Box>
 
 
-              <Heading fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Created</Heading>
+              <Heading color={'gray.500'} fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Created</Heading>
 
               <Box width="20"></Box>
 
 
-              <Heading fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Saved</Heading>
+              <Heading color={'gray.500'} fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Saved</Heading>
             </HStack>
           </Center>
 
         </Box>
 
       </Center>
-
-
-
 
       {/* Split between profile section and feed*/}
 
@@ -222,8 +230,7 @@ export default function CreatorDashboard() {
         </div>
       </div>
 
-      <VStack>
-
+      <VStack bgColor="blue.100">
         <HStack justify="center" p="0">
 
           <Center justify="center" py={2}>
@@ -607,6 +614,29 @@ export default function CreatorDashboard() {
         </HStack>
 
       </VStack>
+
+      <Box height="500">
+
+
+            </Box>
+
+            <Box
+                bg='gray.50'
+                color='gray.700'>
+                <Container
+                    as={Stack}
+                    maxW={'6xl'}
+                    py={4}
+                    direction={{ base: 'column', md: 'row' }}
+                    spacing={4}
+                    justify={{ base: 'center', md: 'space-between' }}
+                    align={{ base: 'center', md: 'center' }}>
+                    <Text>© 2020 Chakra Templates. All rights reserved</Text>
+                    <Stack direction={'row'} spacing={6}>
+
+                    </Stack>
+                </Container>
+            </Box>
 
 
 

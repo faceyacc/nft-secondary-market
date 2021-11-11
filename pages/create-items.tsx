@@ -13,7 +13,7 @@ const client = ipfsHttpClient({ host: "ipfs.infura.io", port: 5001, protocol: "h
 
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
-import { ChakraProvider, Box, Center, Stack, Heading, Text, Flex, Avatar, Image} from "@chakra-ui/react";
+import { ChakraProvider, Box, Container, Center, Stack, Heading, Text, Flex, Avatar, Image } from "@chakra-ui/react";
 
 function CreateItem() {
 
@@ -92,10 +92,10 @@ function CreateItem() {
       </Flex>
 
       <Center py={2}
-      w={'full'}
-      justify={'center'}
-      px="4"
-      bgGradient={'linear(to-r, blue.200, transparent)'}
+        w={'full'}
+        justify={'center'}
+        px="4"
+        bgGradient={'linear(to-r, blue.200, transparent)'}
       >
 
         <Box
@@ -133,12 +133,12 @@ function CreateItem() {
 
           <Box border="black" shadow="md" borderWidth="1px" rounded="lg">
 
-          {
+            {
               fileUrl && (
                 <img className="rounded mt-4" width="600" src={fileUrl} />
               )
             }
-            
+
           </Box>
 
           <Box
@@ -185,6 +185,26 @@ function CreateItem() {
           </button>
         </div>
       </div>
+
+
+      <Box height="100"></Box>
+      <Box
+        bg='gray.50'
+        color='gray.700'>
+        <Container
+          as={Stack}
+          maxW={'6xl'}
+          py={4}
+          direction={{ base: 'column', md: 'row' }}
+          spacing={4}
+          justify={{ base: 'center', md: 'space-between' }}
+          align={{ base: 'center', md: 'center' }}>
+          <Text>© 2020 Chakra Templates. All rights reserved</Text>
+          <Stack direction={'row'} spacing={6}>
+
+          </Stack>
+        </Container>
+      </Box>
     </ChakraProvider>
 
 
