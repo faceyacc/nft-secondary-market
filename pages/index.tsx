@@ -144,7 +144,7 @@ function Home() {
                 </NextLink>
               </Button>
             </Stack>
-            
+
           </Stack>
         </VStack>
       </Flex>
@@ -442,10 +442,9 @@ function Home() {
         align={'center'}
         templateColumns="repeat(auto-fit, minmax(350px, 1fr))" >
 
-
         <Box>
           <Box
-            backgroundColor="white"
+            backgroundColor="orange.50"
             borderRadius="lg"
             boxShadow="xl"
             pl={3}
@@ -483,7 +482,7 @@ function Home() {
 
         <Box>
           <Box
-            backgroundColor="white"
+            backgroundColor="green.50"
             borderRadius="lg"
             boxShadow="xl"
             pl={3}
@@ -518,7 +517,7 @@ function Home() {
 
         <Box>
           <Box
-            backgroundColor="white"
+            backgroundColor="blueç.50"
             borderRadius="lg"
             boxShadow="xl"
             pl={3}
@@ -587,14 +586,34 @@ function Home() {
 
           border="black"
         >
-          <Text m={5}> React </Text>
-          <Text m={5}> Solidity </Text>
-          <Text m={5}> Hardhat </Text>
-          <Text m={5}> NodeJS </Text>
-          <Text m={5}> Metamask </Text>
-          <Text m={5}> Typescript </Text>
-          <Text m={5}> ChakraUI </Text>
-          <Text m={5}> ChakraTemplates </Text>
+          <HStack spacing="20px" justify="center" align="center" m="2">
+            <Link href="https:/reactjs.org" isExternal>
+              React
+            </Link>
+            <Link href="https://nodejs.org/en/" isExternal>
+              NodeJS
+            </Link>
+            <Link href="https://hardhat.org/" isExternal>
+              Hardhat
+            </Link>
+            <Link href="https://soliditylang.org/" isExternal>
+              Solidity
+            </Link>
+            <Link href="https://metamask.io/" isExternal>
+              MetaMask
+            </Link>
+            <Link href="https://chakra-ui.com/" isExternal>
+              ChakraUI
+            </Link>
+            <Link href="https://chakra-templates.dev/" isExternal>
+              Chakra Templates
+            </Link>
+            <Link href="https://ethereum.org/en/" isExternal>
+              Ethereum
+            </Link>
+          </HStack>
+
+
 
 
           <Box height={15} />
@@ -606,25 +625,25 @@ function Home() {
       <Box height="100">
 
 
-            </Box>
+      </Box>
 
-            <Box
-                bg='gray.50'
-                color='gray.700'>
-                <Container
-                    as={Stack}
-                    maxW={'6xl'}
-                    py={4}
-                    direction={{ base: 'column', md: 'row' }}
-                    spacing={4}
-                    justify={{ base: 'center', md: 'space-between' }}
-                    align={{ base: 'center', md: 'center' }}>
-                    <Text>© 2020 Chakra Templates. All rights reserved</Text>
-                    <Stack direction={'row'} spacing={6}>
+      <Box
+        bg='gray.50'
+        color='gray.700'>
+        <Container
+          as={Stack}
+          maxW={'6xl'}
+          py={4}
+          direction={{ base: 'column', md: 'row' }}
+          spacing={4}
+          justify={{ base: 'center', md: 'space-between' }}
+          align={{ base: 'center', md: 'center' }}>
+          <Text>© 2020 Chakra Templates. All rights reserved</Text>
+          <Stack direction={'row'} spacing={6}>
 
-                    </Stack>
-                </Container>
-            </Box>
+          </Stack>
+        </Container>
+      </Box>
 
     </ChakraProvider>
 

@@ -2,9 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/preview3": "pages/preview3.js",
-  "/": "pages/index.js",
-  "/preview": "pages/preview.js",
-  "/preview2": "pages/preview2.js",
+  "/create-items": "pages/create-items.js",
   "/creator-dashboard": "pages/creator-dashboard.js"
 }
