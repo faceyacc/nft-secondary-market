@@ -15,7 +15,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
     <ChakraProvider>
 
-      <Box width="2000" height="60px" bg="white" borderWidth="2px" rounded="lg"  objectPosition="flex" alignItems="center">
+      <Box width="2000" height="60px" bg="white" borderWidth="2px" rounded="lg" objectPosition="flex" alignItems="center">
 
         <Center>
 
@@ -46,46 +46,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             </Link>
 
             <Link href="/creator-dashboard">
-              Dashboard
+              Creator Dashboard
             </Link>
 
           </HStack>
         </Center>
-        
+
       </Box>
 
       <Component {...pageProps} />
 
     </ChakraProvider>
-    // <div>
-    //   <nav className="border-b p-6">
-    //     <p className="text-4xl font-bold">NFT Secondary Marketplace</p>
-    //     <div className="flex mt-4">
-    //       <NextLink href="/">
-    //         <a className="mr-4 text-blue-500">
-    //           Home
-    //         </a>
-    //       </NextLink>
-    //       <NextLink href="/create-items">
-    //         <a className="mr-6 text-blue-500">
-    //           Sell Digital Asset
-    //         </a>
-    //       </NextLink>
-
-    //       <NextLink href="/my-assets">
-    //         <a className="mr-6 text-blue-500">
-    //           My Digital Assets
-    //         </a>
-    //       </NextLink>
-
-    //       <NextLink href="/creator-dashboard">
-    //       <a className="mr-6 text-blue-500">
-    //         Creator Dashboard
-    //       </a>
-    //       </NextLink>
-    //     </div>
-    //   </nav>
-
-    // </div>
   )
 }

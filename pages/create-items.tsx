@@ -87,16 +87,13 @@ function CreateItem() {
     <ChakraProvider>
 
       <Flex>
-
-
       </Flex>
-
       <Center py={2}
         w={'full'}
         justify={'center'}
         px="4"
-        bgGradient={'linear(to-r, blue.200, transparent)'}
-      >
+        bgGradient={'linear(to-r, blue.500, transparent)'}>
+
 
         <Box
           py="90"
@@ -131,33 +128,20 @@ function CreateItem() {
 
         <Stack py="10" p="20" pt={5} align={'center'}>
 
-          <Box border="black" shadow="md" borderWidth="1px" rounded="lg">
 
+
+          <Center align="center" justify="center">
             {
               fileUrl && (
                 <img className="rounded mt-4" width="600" src={fileUrl} />
               )
             }
+          </Center>
 
-          </Box>
 
-          <Box
-            alt={'Details'}
-            css={{
-              border: '1px solid white',
-            }}
-          />
-          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-            Test
-          </Text>
-          <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-            Name your NFT below
-          </Heading>
-          <Stack direction={'row'} align={'center'}>
-            <Text fontWeight={800} fontSize={'xl'}>
-              $50
-            </Text>
-          </Stack>
+
+
+
         </Stack>
 
       </Center>
