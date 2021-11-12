@@ -6,6 +6,7 @@ import Web3Modal from "web3modal"
 import {
   nftaddress, nftmarketaddress
 } from '../config'
+import NextLink from 'next/link'
 
 // const client = ipfsHttpClient()
 // client.add("https://ipfs.infura.io:5001/api/v0")
@@ -14,7 +15,7 @@ import {
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 import axios, { AxiosResponse } from "axios";
-import { Box, ChakraProvider, Container, Editable, EditablePreview, EditableInput, Heading, HStack, Input, Link, Text, Stack, Button, Center, Avatar, Flex, Image, VStack } from '@chakra-ui/react'
+import { Box, Wrap, WrapItem, ChakraProvider, Container, Editable, EditablePreview, EditableInput, Heading, HStack, Input, Link, Text, Stack, Button, Center, Avatar, Flex, Image, VStack } from '@chakra-ui/react'
 
 interface metadataType {
   image: string,
@@ -74,7 +75,16 @@ export default function CreatorDashboard() {
     setNfts(items)
     setLoadingState('loaded')
   }
-  if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No assets created</h1>)
+  if (loadingState === 'loaded' && !nfts.length) return (
+
+    <ChakraProvider>
+
+      <Heading>0 NFTs Owned</Heading>
+
+    </ChakraProvider>
+
+
+  )
   return (
 
     <ChakraProvider>
@@ -109,11 +119,11 @@ export default function CreatorDashboard() {
             <Box px={10}>
               <Stack spacing={0} align={'right'} mb={5} px={0}>
                 <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-                  
-                <Editable defaultValue="Enter Username">
-                  <EditablePreview />
-                  <EditableInput />
-                </Editable>
+
+                  <Editable defaultValue="Enter Username">
+                    <EditablePreview />
+                    <EditableInput />
+                  </Editable>
                 </Heading>
 
                 <Editable color={'gray.500'} defaultValue="Enter bio">
@@ -158,7 +168,7 @@ export default function CreatorDashboard() {
 
       </Center>
 
-      <Center py={3} bgColor="white">
+      {/* <Center py={3} bgColor="white">
         <Box
           bgColor="white"
           maxW={'3000px'}
@@ -187,48 +197,96 @@ export default function CreatorDashboard() {
 
         </Box>
 
-      </Center>
+      </Center> */}
 
       {/* Split between profile section and feed*/}
 
-      <div>
-        <div className="p-4">
-          {/* <h2 className="text-2xl py-2">Items Created</h2> */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+      <Box height="100" width="1000" justify="center" align="center">
+        
+        <Heading p="5"   size="xl" color={'gray.700'}>Unsold Items:</Heading>
+      </Box>
+
+      <HStack backgroundColor="blue.100" justify="center" p="0">
+        {
+          nfts.map((nft, i) => (
+
+            <Center justify="center" py={2}>
+              <Box
+                role={'group'}
+                p={10}
+                // width={'600px'}
+                w={'full'}
+                bg={"white"}
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                pos={'relative'}
+                zIndex={1}>
+                <Stack pt={0} align={'center'}>
+                  <Image boxShadow={'xl'} size="md" minW="300" maxW="300" src={nft.image} />
+                  <Heading fontSize={'4xl'} fontFamily={'body'} fontWeight={500}>
+                    {nft.name}
+                  </Heading>
+                  <Stack direction={'column'} align={'center'}>
+                    <Text fontWeight={800} fontSize={'3xl'}>
+                      {nft.price} ETH
+                    </Text>
+                  </Stack>
+                </Stack>
+              </Box>
+            </Center>
+
+          ))
+        }
+
+      </HStack>
+
+      {
+        Boolean(sold.length) && (
+          <Box>
+
+            <Box p="5" height="100" width="1000" justify="center" align="center">
+              <Heading size="xl" color={'gray.700'}>Unsold Items:</Heading>
+            </Box>
+
             {
-              nfts.map((nft, i) => (
-                <div key={i} className="border shadow rounded-xl overflow-hidden">
-                  <img src={nft.image} className="rounded" />
-                  <div className="p-4 bg-black">
-                    <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
-                  </div>
-                </div>
+              sold.map((nft, i) => (
+
+                <Center justify="center" py={2}>
+                  <Box
+                    role={'group'}
+                    p={10}
+                    // width={'600px'}
+                    w={'full'}
+                    bg={"white"}
+                    boxShadow={'2xl'}
+                    rounded={'lg'}
+                    pos={'relative'}
+                    zIndex={1}>
+                    <Stack pt={0} align={'center'}>
+                      <Image boxShadow={'xl'} size="md" minW="300" maxW="300" src={nft.image} />
+                      <Heading fontSize={'4xl'} fontFamily={'body'} fontWeight={500}>
+                        {nft.name}
+                      </Heading>
+                      <Stack direction={'column'} align={'center'}>
+                        <Text fontWeight={800} fontSize={'3xl'}>
+                          {nft.price} ETH
+                        </Text>
+                      </Stack>
+                    </Stack>
+                  </Box>
+                </Center>
+
+
               ))
             }
-          </div>
-        </div>
-        <div className="px-4">
-          {
-            Boolean(sold.length) && (
-              <div>
-                <h2 className="text-2xl py-2">Items sold</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-                  {
-                    sold.map((nft, i) => (
-                      <div key={i} className="border shadow rounded-xl overflow-hidden">
-                        <img src={nft.image} className="rounded" />
-                        <div className="p-4 bg-black">
-                          <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
-                        </div>
-                      </div>
-                    ))
-                  }
-                </div>
-              </div>
-            )
-          }
-        </div>
-      </div>
+
+          </Box>
+        )
+      }
+
+      <Box height="100" width="1000" justify="center" align="center">
+        <Heading p="5" size="xl" color={'gray.700'}>More Items:</Heading>
+      </Box>
 
       <VStack bgColor="blue.100">
         <HStack justify="center" p="0">
@@ -618,25 +676,25 @@ export default function CreatorDashboard() {
       <Box height="500">
 
 
-            </Box>
+      </Box>
 
-            <Box
-                bg='gray.50'
-                color='gray.700'>
-                <Container
-                    as={Stack}
-                    maxW={'6xl'}
-                    py={4}
-                    direction={{ base: 'column', md: 'row' }}
-                    spacing={4}
-                    justify={{ base: 'center', md: 'space-between' }}
-                    align={{ base: 'center', md: 'center' }}>
-                    <Text>© 2020 Chakra Templates. All rights reserved</Text>
-                    <Stack direction={'row'} spacing={6}>
+      <Box
+        bg='gray.50'
+        color='gray.700'>
+        <Container
+          as={Stack}
+          maxW={'6xl'}
+          py={4}
+          direction={{ base: 'column', md: 'row' }}
+          spacing={4}
+          justify={{ base: 'center', md: 'space-between' }}
+          align={{ base: 'center', md: 'center' }}>
+          <Text>© 2020 Chakra Templates. All rights reserved</Text>
+          <Stack direction={'row'} spacing={6}>
 
-                    </Stack>
-                </Container>
-            </Box>
+          </Stack>
+        </Container>
+      </Box>
 
 
 

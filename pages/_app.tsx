@@ -42,7 +42,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             </Box>
 
             <Link href="/my-assets">
-              Your NFTs
+              Owned NFTs
             </Link>
 
             <Link href="/creator-dashboard">
