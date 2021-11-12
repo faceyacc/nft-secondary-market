@@ -21,6 +21,7 @@ interface metadataType {
   image: string,
   name: string
   desription: string,
+
 }
 
 type nftType = {
@@ -30,6 +31,8 @@ type nftType = {
   owner: string
   sold: unknown
   image: string
+  name: unknown
+  desription: unknown
 }
 
 
@@ -65,6 +68,8 @@ export default function CreatorDashboard() {
         owner: i.owner,
         sold: i.sold,
         image: meta.data.image,
+        name: meta.data.name,
+        desription: meta.data.desription,
       }
       return item
     }))
@@ -79,7 +84,97 @@ export default function CreatorDashboard() {
 
     <ChakraProvider>
 
-      <Heading>0 NFTs Owned</Heading>
+      <Center bgColor="blue.100" py={3}>
+        <Box
+          bgColor="white"
+          maxW={'3000px'}
+          width="800px"
+
+          maxHeight="300px"
+
+          boxShadow={'lg'}
+          rounded={'md'}
+          overflow={'hidden'}>
+
+          <Flex px={20} py={10} justify={'left'}>
+            <Avatar
+
+              size={'xl'}
+              src={
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1024px-MetaMask_Fox.svg.png'
+              }
+              alt={'Author'}
+              css={{
+                border: '2px solid white',
+              }}
+            />
+
+            <Box px={10}>
+              <Stack spacing={0} align={'right'} mb={5} px={0}>
+                <Heading fontSize={'md'} fontWeight={500} fontFamily={'body'}>
+                  {nftaddress}
+                </Heading>
+              </Stack>
+
+              <Stack direction={'row'} justify={'center'} spacing={6}>
+                <Stack spacing={0} align={'center'}>
+                  <Text fontWeight={600}># NFTs Created</Text>
+                  <Text fontSize={'sm'} color={'gray.500'}>
+                    NFTs Created
+                  </Text>
+                </Stack>
+                <Stack spacing={0} align={'center'}>
+                  <Text fontWeight={600}># NFTS Owned</Text>
+                  <Text fontSize={'sm'} color={'gray.500'}>
+                    NFTs Owned
+                  </Text>
+                </Stack>
+              </Stack>
+
+              <Button
+                w={'full'}
+                mt={8}
+                bg='gray.900'
+                color={'white'}
+                rounded={'md'}
+                _hover={{
+                  transform: 'translateY(-2px)',
+                  boxShadow: 'lg',
+                }}>
+                Follow User
+              </Button>
+            </Box>
+          </Flex>
+        </Box>
+
+
+      </Center>
+
+      <Heading justify="center" align="center">Message: You do not own any NFTs!</Heading>
+
+      <Box height="500">
+
+
+      </Box>
+
+      <Box
+        bg='gray.50'
+        color='gray.700'>
+        <Container
+          as={Stack}
+          maxW={'6xl'}
+          height="200px"
+          py={4}
+          direction={{ base: 'column', md: 'row' }}
+          spacing={4}
+          justify={{ base: 'center', md: 'space-between' }}
+          align={{ base: 'center', md: 'center' }}>
+          <Text>© 2020 Chakra Templates. All rights reserved</Text>
+          <Stack direction={'row'} spacing={6}>
+
+          </Stack>
+        </Container>
+      </Box>
 
     </ChakraProvider>
 
@@ -118,30 +213,19 @@ export default function CreatorDashboard() {
 
             <Box px={10}>
               <Stack spacing={0} align={'right'} mb={5} px={0}>
-                <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-
-                  <Editable defaultValue="Enter Username">
-                    <EditablePreview />
-                    <EditableInput />
-                  </Editable>
+                <Heading fontSize={'md'} fontWeight={500} fontFamily={'body'}>
+                  {nftaddress}
                 </Heading>
-
-                <Editable color={'gray.500'} defaultValue="Enter bio">
-                  <EditablePreview />
-                  <EditableInput />
-                </Editable>
-
-
               </Stack>
 
-              <Stack direction={'row'} justify={'right'} spacing={6}>
+              <Stack direction={'row'} justify={'center'} spacing={6}>
                 <Stack spacing={0} align={'center'}>
                   <Text fontWeight={600}># NFTs Created</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>
                     NFTs Created
                   </Text>
                 </Stack>
-                <Stack spacing={0} align={'right'}>
+                <Stack spacing={0} align={'center'}>
                   <Text fontWeight={600}># NFTS Owned</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>
                     NFTs Owned
@@ -202,8 +286,8 @@ export default function CreatorDashboard() {
       {/* Split between profile section and feed*/}
 
       <Box height="100" width="1000" justify="center" align="center">
-        
-        <Heading p="5"   size="xl" color={'gray.700'}>Unsold Items:</Heading>
+
+        <Heading p="5" size="xl" color={'gray.700'}>Created Items:</Heading>
       </Box>
 
       <HStack backgroundColor="blue.100" justify="center" p="0">
@@ -220,11 +304,12 @@ export default function CreatorDashboard() {
                 boxShadow={'2xl'}
                 rounded={'lg'}
                 pos={'relative'}
+                minH="500"
                 zIndex={1}>
                 <Stack pt={0} align={'center'}>
                   <Image boxShadow={'xl'} size="md" minW="300" maxW="300" src={nft.image} />
                   <Heading fontSize={'4xl'} fontFamily={'body'} fontWeight={500}>
-                    {nft.name}
+                    {nft.name} {nft.description}
                   </Heading>
                   <Stack direction={'column'} align={'center'}>
                     <Text fontWeight={800} fontSize={'3xl'}>

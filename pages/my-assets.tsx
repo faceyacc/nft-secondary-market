@@ -31,6 +31,8 @@ function MyAssets() {
     seller: string
     owner: string
     image: unknown
+    name: unknown
+    desription: string
   }
 
 
@@ -59,7 +61,8 @@ function MyAssets() {
         seller: i.seller,
         owner: i.owner,
         image: meta.data.image,
-
+        name: meta.data.name,
+        desription: meta.data.desription,
       }
       return item
     }))
@@ -177,45 +180,6 @@ function MyAssets() {
                       Last price: 2 ETH
                     </Text> */}
                   </Stack>
-
-                  <HStack>
-                    <Button
-                      fontSize={'2xl'}
-                      rounded={'full'}
-                      bg={'orange.400'}
-                      color={'white'}
-                      boxShadow={
-                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                      }
-                      _hover={{
-                        bg: 'orange.500',
-                      }}
-                      _focus={{
-                        bg: 'orange.500',
-                      }}>
-                      <NextLink href={'/preview'} passHref>
-                        Bid
-                      </NextLink>
-                    </Button>
-                    <Button
-                      fontSize={'2xl'}
-                      rounded={'full'}
-                      bg={'blue.400'}
-                      color={'white'}
-                      boxShadow={
-                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                      }
-                      _hover={{
-                        bg: 'blue.500',
-                      }}
-                      _focus={{
-                        bg: 'blue.500',
-                      }}>
-                      <NextLink href={'/preview'} passHref>
-                        Buy Now
-                      </NextLink>
-                    </Button>
-                  </HStack>
                 </Stack>
               </Box>
             </Center>
@@ -238,8 +202,12 @@ function MyAssets() {
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1024px-MetaMask_Fox.svg.png'
                   } />
 
+                  <Heading fontSize={'md'} fontFamily={'body'} fontWeight={500}>
+                    NFT Owner:
+                  </Heading>
                   <Wrap>
                     <WrapItem>
+
                       <Heading fontSize={'sm'} fontFamily={'body'} fontWeight={500}>
                         {nft.owner}
                       </Heading>
@@ -345,7 +313,6 @@ function MyAssets() {
                 <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={500} justify="center" align="center">
                   Description:
                 </Heading>
-
 
                 <Text justify="center" align="center" p="2">
                   {nft.description}
