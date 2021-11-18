@@ -2,8 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/creator-dashboard": "pages/creator-dashboard.js",
-  "/my-assets": "pages/my-assets.js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/create-items": "pages/create-items.js"
 }

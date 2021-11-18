@@ -12,6 +12,16 @@ import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 
 // 1. import `ChakraProvider` component
 import { Box, Heading, Container, ChakraProvider, Grid, WrapItem, AlertTitle, Wrap, Badge, Button, Flex, Stack, VStack, Text, Link, HStack, Center, Image, Tag, Alert, AlertDescription, AlertIcon } from "@chakra-ui/react"
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+} from "@chakra-ui/react"
 
 function Home() {
   const [nfts, setNfts] = useState([])
@@ -137,9 +147,7 @@ function Home() {
         </VStack>
       </Flex>
 
-      <Box height="10"></Box>
-
-      <VStack justify="center" align="center" minH="800px">
+      <VStack justify="center" align="center" minH="400px">
         <HStack justify="center" align="center" spacing="20px">
           <Wrap justify="center" align="center">
             {
@@ -156,12 +164,13 @@ function Home() {
                     boxShadow={'2xl'}
                     rounded={'lg'}
                     pos={'relative'}
-
-
                     zIndex={1}>
+
                     <HStack pt={0} justify="center" align={'center'}>
                       <Stack pt={0} align={'center'} justify="center">
-                        <Image boxShadow={'xl'} size="sm" maxW="250" src={nft.image} />
+
+                        <Image boxShadow={'xl'} size="md" maxW="300" src={nft.image} />
+
                         <Text color={'gray.500'} fontSize={'lg'} textTransform={'uppercase'}>
                           {nft.description}
                         </Text>
@@ -206,6 +215,8 @@ function Home() {
                           </Button>
 
                         </HStack>
+
+
                       </Stack>
                     </HStack>
                   </Box>
@@ -269,7 +280,7 @@ function Home() {
                         bg: 'orange.500',
                       }}>
                       <NextLink href={'/preview'} passHref>
-                        Bid (Soon)
+                        Bid (soon)
                       </NextLink>
                     </Button>
 
@@ -289,7 +300,7 @@ function Home() {
                         bg: 'blue.500',
                       }}>
                       <NextLink href={'/preview'} passHref>
-                        Buy Now
+                        Preview Now
                       </NextLink>
                     </Button>
 
@@ -318,7 +329,9 @@ function Home() {
 
               <Stack pt={0} align={'center'} >
 
-                <Image boxShadow={'xl'} size="sm" maxW="250" src="https://www.publicdomainpictures.net/pictures/380000/nahled/abstrakt-hintergrund-digital-kunst-1604758561s0C.jpg" />
+                <Image size="sm" src="https://images.saatchiart.com/saatchi/314125/art/3867407/2937290-RDUKGEIW-7.jpg" />
+
+
 
                 <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
                   By John Vee
@@ -371,7 +384,7 @@ function Home() {
                       bg: 'blue.500',
                     }}>
                     <NextLink href={'/preview2'} passHref>
-                      Buy Now
+                      Preview Now
                     </NextLink>
                   </Button>
 
@@ -447,7 +460,7 @@ function Home() {
                       bg: 'blue.500',
                     }}>
                     <NextLink href={'/preview3'} passHref>
-                      Buy Now
+                      Preview Now
                     </NextLink>
                   </Button>
 
@@ -670,10 +683,10 @@ function Home() {
       </Box>
       )
 
-      <Box height="100">
+      < Box height="100" >
 
 
-      </Box>
+      </Box >
 
       <Box
         bg='gray.50'
