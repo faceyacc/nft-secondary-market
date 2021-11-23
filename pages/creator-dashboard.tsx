@@ -120,7 +120,7 @@ export default function CreatorDashboard() {
                 <Stack spacing={0} align={'center'}>
                   <Text fontWeight={600}># NFTs Created</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>
-                    NFTs Created
+                    NFTs Created:
                   </Text>
                 </Stack>
                 <Stack spacing={0} align={'center'}>
@@ -183,9 +183,7 @@ export default function CreatorDashboard() {
   return (
 
     <ChakraProvider>
-      <Box height="px" >
 
-      </Box >
       <Center bgColor="blue.100" py={3}>
         <Box
           bgColor="white"
@@ -222,13 +220,13 @@ export default function CreatorDashboard() {
                 <Stack spacing={0} align={'center'}>
                   <Text fontWeight={600}># NFTs Created</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>
-                    NFTs Created
+                    NFTs Created: {nfts.length}
                   </Text>
                 </Stack>
                 <Stack spacing={0} align={'center'}>
                   <Text fontWeight={600}># NFTS Owned</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>
-                    NFTs Owned
+                    NFTs Owned:
                   </Text>
                 </Stack>
               </Stack>
@@ -251,6 +249,8 @@ export default function CreatorDashboard() {
 
 
       </Center>
+
+      
 
       {/* <Center py={3} bgColor="white">
         <Box

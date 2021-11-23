@@ -106,6 +106,21 @@ function MyAssets() {
                   Get MetaMask
                 </Link>
               </Button>
+
+              <Button
+                size="lg"
+                bg={'yellow.400'}
+                rounded={'full'}
+                color={'white'}
+                _hover={{ bg: 'yellow.200' }}
+
+              >
+                <NextLink href={'/feedpreview'} passHref>
+                  Browse NFTs
+                </NextLink>
+              </Button>
+
+
               <Button
                 size="lg"
                 bg={'white'}
@@ -118,6 +133,7 @@ function MyAssets() {
                   Create an NFT
                 </NextLink>
               </Button>
+
             </Stack>
           </Stack>
         </VStack>

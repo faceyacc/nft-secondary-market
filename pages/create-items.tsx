@@ -93,8 +93,6 @@ function CreateItem() {
         justify={'center'}
         px="4"
         bgGradient={'linear(to-r, blue.500, transparent)'}>
-
-
         <Box
           py="90"
           height="300px"
@@ -105,13 +103,9 @@ function CreateItem() {
           justify="center"
           bgColor="gray.100"
           shadow="md">
-
-
           <Heading size="lg" as="span">
             Upload an NFT to create:
           </Heading>
-
-
           <Flex alignItems="center" px="120" as="span" >
             <input
               type="file"
@@ -127,9 +121,6 @@ function CreateItem() {
         </Box>
 
         <Stack py="10" p="20" pt={5} align={'center'}>
-
-
-
           <Center align="center" justify="center">
             {
               fileUrl && (
@@ -137,13 +128,7 @@ function CreateItem() {
               )
             }
           </Center>
-
-
-
-
-
         </Stack>
-
       </Center>
 
       <div className="flex justify-center">

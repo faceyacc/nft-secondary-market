@@ -11,7 +11,7 @@ import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 
 // 1. import `ChakraProvider` component
-import { Box, Heading, ChakraProvider, Container, Grid, AlertTitle, Badge, Button, Flex, Stack, VStack, Text, Link, HStack, Center, Image, Tag, Alert, AlertDescription, AlertIcon } from "@chakra-ui/react"
+import { Box, Heading, ChakraProvider, Avatar, Container, Grid, AlertTitle, Badge, Button, Flex, Stack, VStack, Text, Link, HStack, Center, Image, Tag, Alert, AlertDescription, AlertIcon } from "@chakra-ui/react"
 
 function Home() {
     const [nfts, setNfts] = useState([])
@@ -90,251 +90,231 @@ function Home() {
 
         <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>
 
-
-
     )
     return (
 
         <ChakraProvider>
-            <Box height="40px"></Box>
-            <VStack>
-                <HStack justify="center" p="0">
-                    <Center justify="center" py={2}>
-                        {/* Left Item Box */}
+            
 
-                        <Box
-                            role={'group'}
-                            p={10}
-                            maxW={'330px'}
-                            w={'full'}
-                            bg={"white"}
-                            boxShadow={'2xl'}
-                            rounded={'lg'}
-                            pos={'relative'}
-                            zIndex={1}>
-                            <Stack pt={0} align={'center'}>
-                                <Image boxShadow={'xl'} size="sm" maxW="250" src="https://www.maxpixel.net/static/photo/1x/Digital-Digital-Art-Woman-Portrait-Person-Face-6064814.jpg" />
-                                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                                    By User3292938
-                                </Text>
-                                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                                    Example Portrait NFT
-                                </Heading>
-                                <Stack direction={'row'} align={'center'}>
-                                    <Text fontWeight={800} fontSize={'xl'}>
-                                        3 ETH
-                                    </Text>
-                                    <Text textDecoration={'line-through'} color={'gray.600'}>
-                                        $199
-                                    </Text>
+            {
+                nfts.map((nft, i) => (
+
+
+                    <HStack backgroundColor="blue.100" justify="center" p="0">
+                        <Center justify="center" py={2}>
+                            <Box
+                                role={'group'}
+                                p={10}
+                                
+                                w={'full'}
+                                bg={"white"}
+                                boxShadow={'2xl'}
+                                rounded={'lg'}
+                                pos={'relative'}
+                                zIndex={1}
+                            
+                            >
+                                <Stack pt={0} align={'center'} minW={'600px'}>
+                                    <Image boxShadow={'xl'} maxH="500" size="md" maxW="500" src={nft.image} />
+                                    <Heading fontSize={'4xl'} fontFamily={'body'} fontWeight={500}>
+                                        {nft.name}
+                                    </Heading>
+                                    <Stack direction={'column'} align={'center'}>
+                                        <Text fontWeight={800} fontSize={'3xl'}>
+                                            {nft.price} ETH
+                                        </Text>
+                                        {/* <Text color={'gray.600'}>
+                                            Last price: 2 ETH
+                                        </Text> */}
+                                    </Stack>
+
+                                    <HStack>
+                                        <Button
+                                            fontSize={'2xl'}
+                                            rounded={'full'}
+                                            bg={'orange.400'}
+                                            color={'white'}
+                                            boxShadow={
+                                                '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                            }
+                                            _hover={{
+                                                bg: 'orange.500',
+                                            }}
+                                            _focus={{
+                                                bg: 'orange.500',
+                                            }}>
+                                            <NextLink href={'/preview'} passHref>
+                                                Bid
+                                            </NextLink>
+                                        </Button>
+                                        <Button
+                                            fontSize={'2xl'}
+                                            rounded={'full'}
+                                            bg={'blue.400'}
+                                            color={'white'}
+                                            boxShadow={
+                                                '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                            }
+                                            _hover={{
+                                                bg: 'blue.500',
+                                            }}
+                                            _focus={{
+                                                bg: 'blue.500',
+                                            }}>
+                                            <button onClick={() => buyNFTs(nft)}>Buy</button>
+                                        </Button>
+                                    </HStack>
                                 </Stack>
-                                <HStack>
-                                    <Button
+                            </Box>
+                        </Center>
+                        <VStack justify="center" py={2} maxH="900px" maxW="500px">
+                            <Box
+                                role={'group'}
+                                p={10}
+                                // width={'500px'}
+                                w={'full'}
+                                h={'full'}
+                                bg={"white"}
+                                boxShadow={'xl'}
+                                rounded={'lg'}
+                                pos={'relative'}
+                                zIndex={1}>
+                                <Stack pt={0} align={'center'}>
+                                    <Avatar
 
-                                        fontSize={'lg'}
-                                        rounded={'full'}
-                                        bg={'orange.400'}
-                                        color={'white'}
-                                        boxShadow={
-                                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                        size={'xl'}
+                                        src={
+                                            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1024px-MetaMask_Fox.svg.png'
                                         }
-                                        _hover={{
-                                            bg: 'orange.500',
+                                        alt={'Author'}
+                                        css={{
+                                            border: '2px solid white',
                                         }}
-                                        _focus={{
-                                            bg: 'orange.500',
-                                        }}>
-                                        <NextLink href={'/preview'} passHref>
-                                            Bid
-                                        </NextLink>
-                                    </Button>
-                                    <Button
-
-                                        fontSize={'lg'}
-                                        rounded={'full'}
-                                        bg={'blue.400'}
-                                        color={'white'}
-                                        boxShadow={
-                                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                        }
-                                        _hover={{
-                                            bg: 'blue.500',
-                                        }}
-                                        _focus={{
-                                            bg: 'blue.500',
-                                        }}>
-                                        <NextLink href={'/preview'} passHref>
-                                            Buy
-                                        </NextLink>
-                                    </Button>
-                                </HStack>
-                            </Stack>
-                        </Box>
-
-                        {/* Left Padding Box */}
-                        <Box width="10">
-                        </Box>
-
-
-                        {/* center Item Box */}
-
-                        <Box
-                            role={'group'}
-                            p={10}
-                            maxW={'330px'}
-                            w={'full'}
-                            bg={"white"}
-                            boxShadow={'2xl'}
-                            rounded={'lg'}
-                            pos={'relative'}
-                            zIndex={1}>
-
-
-                            <Stack pt={0} align={'center'}>
-
-                                <Image boxShadow={'xl'} size="sm" maxW="250" src="https://www.publicdomainpictures.net/pictures/380000/nahled/abstrakt-hintergrund-digital-kunst-1604758561s0C.jpg" />
-
-                                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                                    By John Vee
-                                </Text>
-                                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                                    Example Art NFT
-                                </Heading>
-                                <Stack direction={'row'} align={'center'}>
-                                    <Text fontWeight={800} fontSize={'xl'}>
-                                        2 ETH
-                                    </Text>
-                                    <Text textDecoration={'line-through'} color={'gray.600'}>
-                                        $199
-                                    </Text>
+                                    />
+                                    <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={500} justify="center" align="center">
+                                        Seller: {nft.seller}
+                                    </Heading>
+                                    <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}></Text>
+                                    <HStack  >
+                                        <Button
+                                            bg='blue.300'
+                                            color={'white'}
+                                            rounded={'md'}
+                                            _hover={{
+                                                transform: 'translateY(-2px)',
+                                                boxShadow: 'lg',
+                                            }}>
+                                            Follow
+                                        </Button>
+                                        <Button
+                                            bg='orange.300'
+                                            color={'white'}
+                                            rounded={'md'}
+                                            _hover={{
+                                                transform: 'translateY(-2px)',
+                                                boxShadow: 'lg',
+                                            }}>
+                                            Profile
+                                        </Button>
+                                    </HStack>
                                 </Stack>
-                                <HStack>
-                                    <Button
+                            </Box>
 
-                                        fontSize={'lg'}
-                                        rounded={'full'}
-                                        bg={'orange.400'}
-                                        color={'white'}
-                                        boxShadow={
-                                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                        }
-                                        _hover={{
-                                            bg: 'orange.500',
-                                        }}
-                                        _focus={{
-                                            bg: 'orange.500',
-                                        }}>
-                                        <NextLink href={'/preview2'} passHref>
-                                            Bid
-                                        </NextLink>
-                                    </Button>
-                                    <Button
+                            <Box
+                                role={'group'}
+                                p={10}
+                                width={'600px'}
+                                w={'full'}
+                                h={'full'}
+                                bg={"white"}
+                                boxShadow={'xl'}
+                                rounded={'lg'}
+                                pos={'relative'}
+                                zIndex={1}>
 
-                                        fontSize={'lg'}
-                                        rounded={'full'}
-                                        bg={'blue.400'}
-                                        color={'white'}
-                                        boxShadow={
-                                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                        }
-                                        _hover={{
-                                            bg: 'blue.500',
-                                        }}
-                                        _focus={{
-                                            bg: 'blue.500',
-                                        }}>
-                                        <NextLink href={'/preview2'} passHref>
-                                            Buy
-                                        </NextLink>
-                                    </Button>
-                                </HStack>
-                            </Stack>
-                        </Box>
-
-                        {/* center Padding Box */}
-                        <Box width="10">
-                        </Box>
-
-                        {/* right Item Box */}
-
-                        <Box
-                            role={'group'}
-                            p={10}
-                            maxW={'330px'}
-                            w={'full'}
-                            bg={"white"}
-                            boxShadow={'2xl'}
-                            rounded={'lg'}
-                            pos={'relative'}
-                            zIndex={1}>
-
-                            <Stack pt={0} align={'center'}>
-
-                                <Image size="sm" src="https://www.kindpng.com/picc/m/238-2381781_awesome-smiley-face-png-transparent-png.png" />
-
-
-                                <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                                    By Jack Newman
-                                </Text>
-                                <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                                    Example Smiley NFT
+                                <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={500} justify="center" align="center">
+                                    Description:
                                 </Heading>
-                                <Stack direction={'row'} align={'center'}>
-                                    <Text fontWeight={800} fontSize={'xl'}>
-                                        10 ETH
-                                    </Text>
+                                <Text justify="center" align="center" p="2">
+                                    {nft.description}
+                                </Text>
+                            </Box>
 
 
-                                    <Text textDecoration={'line-through'} color={'gray.600'}>
-                                        $199
-                                    </Text>
-                                </Stack>
-                                <HStack>
-                                    <Button
+                            <Box
+                                role={'group'}
+                                p={10}
+                                width={'600px'}
+                                w={'full'}
+                                h={'full'}
+                                bg={"white"}
+                                boxShadow={'xl'}
+                                rounded={'lg'}
+                                pos={'relative'}
+                                zIndex={1}>
+                                <VStack>
+                                    <Stack direction="row" pt={0} align={'center'}>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={500}>
+                                            Owners:
+                                        </Heading>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={300}>
+                                            n/a
+                                        </Heading>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={500}>
+                                            Bids:
+                                        </Heading>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={300}>
+                                            n/a
+                                        </Heading>
+                                    </Stack>
 
-                                        fontSize={'lg'}
-                                        rounded={'full'}
-                                        bg={'orange.400'}
-                                        color={'white'}
-                                        boxShadow={
-                                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                        }
-                                        _hover={{
-                                            bg: 'orange.500',
-                                        }}
-                                        _focus={{
-                                            bg: 'orange.500',
-                                        }}>
-                                        <NextLink href={'/preview3'} passHref>
-                                            Bid
-                                        </NextLink>
-                                    </Button>
-                                    <Button
+                                    <Stack direction="row" pt={0} align={'center'}>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={500}>
+                                            Likes:
+                                        </Heading>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={300}>
+                                            n/a
+                                        </Heading>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={500}>
+                                            Saves:
+                                        </Heading>
+                                        <Heading color="gray.400" fontSize={'xl'} fontFamily={'body'} fontWeight={300}>
+                                            n/a
+                                        </Heading>
 
-                                        fontSize={'lg'}
-                                        rounded={'full'}
-                                        bg={'blue.400'}
-                                        color={'white'}
-                                        boxShadow={
-                                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                        }
-                                        _hover={{
-                                            bg: 'blue.500',
-                                        }}
-                                        _focus={{
-                                            bg: 'blue.500',
-                                        }}>
-                                        <NextLink href={'/preview3'} passHref>
-                                            Buy
-                                        </NextLink>
-                                    </Button>
-                                </HStack>
-                            </Stack>
-                        </Box>
-                    </Center>
-                </HStack>
-            </VStack>
-            <Box height="40px"></Box>
+                                    </Stack>
+                                </VStack>
+                            </Box>
+
+
+                        </VStack>
+                    </HStack>
+
+                ))
+            }
+
+            <Box height="300"></Box>
+
+            <Box
+                bg='gray.50'
+                color='gray.700'>
+                <Container
+                    as={Stack}
+                    maxW={'6xl'}
+                    py={4}
+                    direction={{ base: 'column', md: 'row' }}
+                    spacing={4}
+                    justify={{ base: 'center', md: 'space-between' }}
+                    align={{ base: 'center', md: 'center' }}>
+                    <Text>© 2020 Chakra Templates. All rights reserved</Text>
+                    <Stack direction={'row'} spacing={6}>
+
+                    </Stack>
+                </Container>
+            </Box>
+
+
+
         </ChakraProvider>
     )
 }

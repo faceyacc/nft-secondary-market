@@ -35,6 +35,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               <Link>Create NFT</Link>
             </NextLink>
 
+            <NextLink href={'/feedpreview'} passHref>
+              <Link>Explore</Link>
+            </NextLink>
+
             <Box h="30px" bgColor="white">
               <Text>
                 <Input placeholder="Search for NFTs" />
