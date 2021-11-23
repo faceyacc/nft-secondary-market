@@ -29,15 +29,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/feedpreview": [
+    "/test": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/feedpreview.js"
-    ],
-    "/my-assets": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/my-assets.js"
+      "static/chunks/pages/test.js"
     ]
   },
   "ampFirstPages": []

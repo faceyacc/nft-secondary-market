@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/my-assets": "pages/my-assets.js",
-  "/feedpreview": "pages/feedpreview.js",
+  "/test": "pages/test.js",
   "/": "pages/index.js"
 }

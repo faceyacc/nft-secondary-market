@@ -92,7 +92,7 @@ function CreateItem() {
         w={'full'}
         justify={'center'}
         px="4"
-        bgGradient={'linear(to-r, blue.500, transparent)'}>
+        bgGradient={'linear(to-r, pink.400, transparent)'}>
         <Box
           py="90"
           height="300px"

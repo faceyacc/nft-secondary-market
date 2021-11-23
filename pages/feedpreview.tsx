@@ -13,6 +13,17 @@ import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 // 1. import `ChakraProvider` component
 import { Box, Heading, ChakraProvider, Avatar, Container, Grid, AlertTitle, Badge, Button, Flex, Stack, VStack, Text, Link, HStack, Center, Image, Tag, Alert, AlertDescription, AlertIcon } from "@chakra-ui/react"
 
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverFooter,
+    PopoverArrow,
+    PopoverCloseButton,
+} from "@chakra-ui/react"
+
 function Home() {
     const [nfts, setNfts] = useState([])
     const [loadingState, setLoadingState] = useState('not-loaded')
@@ -33,7 +44,7 @@ function Home() {
         owner: string
         image: unknown
         name: unknown
-        desription: unknown
+        desription: string
     }
 
     async function loadNFTs() {
@@ -88,31 +99,93 @@ function Home() {
     }
     if (loadingState === 'loaded' && !nfts.length) return (
 
-        <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>
+        <ChakraProvider>
+            <Flex
+                w={'full'}
+                h="800px"
+                backgroundSize={'cover'}
+                backgroundPosition={'center center'}>
+                <VStack
+                    w={'full'}
+                    justify={'center'}
+                    px="4"
+                    bgGradient={'linear(to-r, red.500, transparent)'}>
+                    <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
+
+                        <Heading size="2xl" color={'white'}>No NFTs currently in the marketplace</Heading>
+                        <Heading
+                            size="lg"
+                            color={'white'}
+                            fontWeight={1100}
+                            lineHeight={1}>
+                            Want to get started? Choose an option:
+                        </Heading>
+                        <Stack direction={'row'}>
+                            <Button
+                                size="lg"
+                                bg={'orange.400'}
+                                rounded={'full'}
+                                color={'white'}
+                                _hover={{ bg: 'orange.300' }}>
+                                <Link href="https://metamask.io/" isExternal>
+                                    Get MetaMask
+                                </Link>
+                            </Button>
+                            <Button
+                                size="lg"
+                                bg={'white'}
+                                rounded={'full'}
+                                color={'black'}
+                                _hover={{ bg: 'gray.100' }}
+
+                            >
+                                <NextLink href={'/create-items'} passHref>
+                                    Create an NFT
+                                </NextLink>
+                            </Button>
+
+                        </Stack>
+                    </Stack>
+                </VStack>
+            </Flex>
+
+            <Box
+                bg='gray.50'
+                color='gray.700'>
+                <Container
+                    as={Stack}
+                    maxW={'6xl'}
+                    py={4}
+                    direction={{ base: 'column', md: 'row' }}
+                    spacing={4}
+                    justify={{ base: 'center', md: 'space-between' }}
+                    align={{ base: 'center', md: 'center' }}>
+                    <Text>© 2020 Chakra Templates. All rights reserved</Text>
+                    <Stack direction={'row'} spacing={6}>
+
+                    </Stack>
+                </Container>
+            </Box>
+        </ChakraProvider>
 
     )
     return (
-
         <ChakraProvider>
-            
-
             {
                 nfts.map((nft, i) => (
-
-
-                    <HStack backgroundColor="blue.100" justify="center" p="0">
+                    <HStack backgroundColor="blue.100" justify="center" p="30">
                         <Center justify="center" py={2}>
                             <Box
                                 role={'group'}
                                 p={10}
-                                
+
                                 w={'full'}
                                 bg={"white"}
                                 boxShadow={'2xl'}
                                 rounded={'lg'}
                                 pos={'relative'}
                                 zIndex={1}
-                            
+
                             >
                                 <Stack pt={0} align={'center'} minW={'600px'}>
                                     <Image boxShadow={'xl'} maxH="500" size="md" maxW="500" src={nft.image} />
@@ -129,24 +202,45 @@ function Home() {
                                     </Stack>
 
                                     <HStack>
-                                        <Button
-                                            fontSize={'2xl'}
-                                            rounded={'full'}
-                                            bg={'orange.400'}
-                                            color={'white'}
-                                            boxShadow={
-                                                '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                            }
-                                            _hover={{
-                                                bg: 'orange.500',
-                                            }}
-                                            _focus={{
-                                                bg: 'orange.500',
-                                            }}>
-                                            <NextLink href={'/preview'} passHref>
-                                                Bid
-                                            </NextLink>
-                                        </Button>
+
+                                        <Popover>
+                                            <PopoverTrigger>
+                                                <Button
+                                                    fontSize={'2xl'}
+                                                    rounded={'full'}
+                                                    bg={'orange.400'}
+                                                    color={'white'}
+                                                    boxShadow={
+                                                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                                    }
+                                                    _hover={{
+                                                        bg: 'orange.500',
+                                                    }}
+                                                    _focus={{
+                                                        bg: 'orange.500',
+                                                    }}>
+                                                    Bid
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent>
+                                                <PopoverArrow />
+                                                <PopoverCloseButton />
+                                                <PopoverHeader>Bid Confirmation:</PopoverHeader>
+                                                <PopoverBody align="center" justify="center" p="10px">
+                                                    <Heading size="md">Enter a bid price:</Heading>
+                                                    <input
+                                                        placeholder="Bid Price"
+                                                        className="mt-8 border rounded p-4"
+                                                    // onChange={e => updateFormInput({ ...formInput, name: e.target.value })}
+                                                    />
+                                                    <Box height="20px"></Box>
+                                                    <Button >
+                                                        Confirm Bid
+                                                    </Button>
+                                                </PopoverBody>
+                                            </PopoverContent>
+                                        </Popover>
+
                                         <Button
                                             fontSize={'2xl'}
                                             rounded={'full'}
@@ -163,6 +257,28 @@ function Home() {
                                             }}>
                                             <button onClick={() => buyNFTs(nft)}>Buy</button>
                                         </Button>
+
+                                        <Button
+                                            fontSize={'2xl'}
+                                            rounded={'full'}
+                                            bg={'black'}
+                                            color={'white'}
+                                            boxShadow={
+                                                '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                            }
+                                            _hover={{
+                                                bg: 'blue.500',
+                                            }}
+                                            _focus={{
+                                                bg: 'blue.500',
+                                            }}>
+                                            Favorite
+
+                                            {/* On click add to favorites, save the nft.tokenId to a list "owned" by nftaddress 
+                                            Each nft address should have a list of saved/favorited*/}
+                                        </Button>
+
+
                                     </HStack>
                                 </Stack>
                             </Box>
@@ -194,6 +310,26 @@ function Home() {
                                     <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={500} justify="center" align="center">
                                         Seller: {nft.seller}
                                     </Heading>
+
+                                    <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={500} justify="center" align="center">
+                                        Owner:
+
+                                    </Heading>
+
+                                    if({nft.owner}!="0x0000000000000000000000000000000000000000")
+                                    {
+                                        <Text>{nft.owner}</Text>
+                                    }
+
+                                    if({nft.owner}="0x0000000000000000000000000000000000000000"){
+                                        <Text>Not Owned</Text>
+                                    }
+
+
+
+
+
+
                                     <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}></Text>
                                     <HStack  >
                                         <Button

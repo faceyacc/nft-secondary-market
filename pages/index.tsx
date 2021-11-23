@@ -43,7 +43,7 @@ function Home() {
     owner: string
     image: unknown
     name: unknown
-    desription: unknown
+    desription: string
   }
 
   async function loadNFTs() {
@@ -148,7 +148,7 @@ function Home() {
       </Flex>
 
       <VStack justify="center" align="center" minH="400px">
-        <HStack justify="center" align="center" spacing="20px">
+        <HStack justify="center" align="center" spacing="40px">
           <Wrap justify="center" align="center">
             {
               nfts.map((nft, i) => (
@@ -167,19 +167,21 @@ function Home() {
                     zIndex={1}>
 
                     <HStack pt={0} justify="center" align={'center'}>
-                      <Stack pt={0} align={'center'} justify="center">
+                      <Stack pt={2} align={'center'} justify="center">
 
                         <Image boxShadow={'xl'} size="md" maxW="300" src={nft.image} />
 
+                        <Box>Hello</Box>
+
                         <Text color={'gray.500'} fontSize={'lg'} textTransform={'uppercase'}>
-                          {nft.description}
+                          By {nft.seller}
                         </Text>
                         <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
                           {nft.name}
                         </Heading>
                         <Stack direction={'row'} align={'center'}>
                           <Text fontWeight={800} fontSize={'xl'}>
-                            {nft.price}ETH
+                            {nft.price} ETH
                           </Text>
                         </Stack>
                         <HStack>
@@ -235,7 +237,7 @@ function Home() {
                 role={'group'}
                 p={10}
                 minH="500"
-                maxW={'330px'}
+                maxW={'400px'}
                 w={'full'}
                 bg={"white"}
                 boxShadow={'2xl'}
@@ -280,7 +282,7 @@ function Home() {
                         bg: 'orange.500',
                       }}>
                       <NextLink href={'/preview'} passHref>
-                        Bid (soon)
+                        Bid
                       </NextLink>
                     </Button>
 
@@ -364,7 +366,7 @@ function Home() {
                       bg: 'orange.500',
                     }}>
                     <NextLink href={'/preview2'} passHref>
-                      Bid (Soon)
+                      Bid
                     </NextLink>
                   </Button>
 
@@ -440,7 +442,7 @@ function Home() {
                       bg: 'orange.500',
                     }}>
                     <NextLink href={'/preview3'} passHref>
-                      Bid (Soon)
+                      Bid
                     </NextLink>
                   </Button>
 
@@ -775,28 +777,28 @@ function Home() {
                   <Box
                     role={'group'}
                     p={10}
-                    maxW={'330px'}
+                    maxW={'400px'}
                     minH="500"
                     w={'full'}
                     bg={"white"}
                     boxShadow={'2xl'}
                     rounded={'lg'}
                     pos={'relative'}
-
-
                     zIndex={1}>
+
                     <HStack pt={0} justify="center" align={'center'}>
                       <Stack pt={0} align={'center'} justify="center">
-                        <Image boxShadow={'xl'} size="sm" maxW="250" src={nft.image} />
-                        <Text color={'gray.500'} fontSize={'lg'} textTransform={'uppercase'}>
-                          {nft.description}
+                        <Image boxShadow={'xl'} size="sm" maxH="250" src={nft.image} />
+                        <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'} align="center" justify="center">
+                          By User: {nft.seller}
+                          
                         </Text>
                         <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
                           {nft.name}
                         </Heading>
                         <Stack direction={'row'} align={'center'}>
                           <Text fontWeight={800} fontSize={'xl'}>
-                            {nft.price}ETH
+                            {nft.price} ETH
                           </Text>
                         </Stack>
                         <HStack>
@@ -850,7 +852,7 @@ function Home() {
                 role={'group'}
                 p={10}
                 minH="500"
-                maxW={'330px'}
+                minW={'400px'}
                 w={'full'}
                 bg={"white"}
                 boxShadow={'2xl'}
@@ -861,7 +863,7 @@ function Home() {
 
                 <Stack pt={0} align={'center'} justify="center">
 
-                  <Image boxShadow={'xl'} size="sm" maxW="250" src="https://www.maxpixel.net/static/photo/1x/Digital-Digital-Art-Woman-Portrait-Person-Face-6064814.jpg" />
+                  <Image boxShadow={'xl'} size="md" maxW="250" src="https://www.maxpixel.net/static/photo/1x/Digital-Digital-Art-Woman-Portrait-Person-Face-6064814.jpg" />
 
                   <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
                     By User3292938
@@ -895,7 +897,7 @@ function Home() {
                         bg: 'orange.500',
                       }}>
                       <NextLink href={'/preview'} passHref>
-                        Bid (Soon)
+                        Bid
                       </NextLink>
                     </Button>
 
@@ -932,7 +934,7 @@ function Home() {
             <Box
               role={'group'}
               p={10}
-              maxW={'330px'}
+              maxW={'400px'}
               minH="500"
               w={'full'}
               bg={"white"}
@@ -977,7 +979,7 @@ function Home() {
                       bg: 'orange.500',
                     }}>
                     <NextLink href={'/preview2'} passHref>
-                      Bid (Soon)
+                      Bid
                     </NextLink>
                   </Button>
 
@@ -1010,7 +1012,7 @@ function Home() {
             <Box
               role={'group'}
               p={10}
-              maxW={'330px'}
+              maxW={'400px'}
               minH="500"
               w={'full'}
               bg={"white"}
@@ -1053,7 +1055,7 @@ function Home() {
                       bg: 'orange.500',
                     }}>
                     <NextLink href={'/preview3'} passHref>
-                      Bid (Soon)
+                      Bid
                     </NextLink>
                   </Button>
 

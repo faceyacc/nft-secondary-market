@@ -53,6 +53,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               Creator Dashboard
             </Link>
 
+            <Link href="/test">
+              TEST
+            </Link>
+
           </HStack>
         </Center>
 
