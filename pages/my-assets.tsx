@@ -73,8 +73,6 @@ function MyAssets() {
   if (loadingState === 'loaded' && !nfts.length) return (
 
     <ChakraProvider>
-
-
       <Flex
         w={'full'}
         h="800px"
