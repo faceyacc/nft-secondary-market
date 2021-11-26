@@ -36,7 +36,6 @@ type nftType = {
 }
 
 
-
 export default function CreatorDashboard() {
   const [nfts, setNfts] = useState([])
   const [sold, setSold] = useState([])
@@ -251,40 +250,6 @@ export default function CreatorDashboard() {
       </Center>
 
 
-
-      {/* <Center py={3} bgColor="white">
-        <Box
-          bgColor="white"
-          maxW={'3000px'}
-          width="800px"
-          height="50px"
-          boxShadow={'xl'}
-          rounded={'md'}
-          overflow={'hidden'}>
-          <Box height="10px"></Box>
-          <Center>
-
-            <HStack>
-              <Heading color={'gray.500'} fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Owned</Heading>
-
-              <Box width="20"></Box>
-
-
-              <Heading color={'gray.500'} fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Created</Heading>
-
-              <Box width="20"></Box>
-
-
-              <Heading color={'gray.500'} fontSize={'2xl'} fontWeight={300} fontFamily={'body'}>Saved</Heading>
-            </HStack>
-          </Center>
-
-        </Box>
-
-      </Center> */}
-
-      {/* Split between profile section and feed*/}
-
       <Box height="100" width="1000" justify="center" align="center">
 
         <Heading p="5" size="lg" color={'gray.700'}>Created Items:</Heading>
@@ -342,7 +307,6 @@ export default function CreatorDashboard() {
                   <Box
                     role={'group'}
                     p={10}
-                    // width={'600px'}
                     w={'full'}
                     bg={"white"}
                     boxShadow={'2xl'}
