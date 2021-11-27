@@ -86,9 +86,7 @@ function landing() {
                 fontSize="40px"
             >
                 <NextLink href={'/landing'} passHref>
-                    <Link
-
-                    >
+                    <Link>
                         [fN]</Link>
                 </NextLink>
             </Heading>
