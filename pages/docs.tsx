@@ -110,7 +110,7 @@ function Docs() {
                     justify={'center'}
                     align={'center'}
 
-                    bgGradient={'linear(to-r, blue.500, transparent)'}>
+                    bgGradient={'linear(to-r, #EB9C34, #F8DB7BB5)'}>
                     <Stack maxW={'2xl'} align={'center'} spacing={6}>
 
                         <Heading color={'white'}>How does it all work?</Heading>
@@ -121,15 +121,17 @@ function Docs() {
             </Flex>
 
             <Grid
+                backgroundColor="orange.100"
                 p={10}
-                gap={6}
+                gap={3}
                 justify={'center'}
                 align={'center'}
-                templateColumns="repeat(auto-fit, minmax(350px, 1fr))" >
+                templateColumns="repeat(auto-fit, minmax(250px, 1fr))" >
 
-                <Box>
+                <Box
+                >
                     <Box
-                        backgroundColor="orange.100"
+                        backgroundColor="orange.200"
                         borderRadius="lg"
                         boxShadow="xl"
                         pl={3}
@@ -167,7 +169,7 @@ function Docs() {
 
                 <Box>
                     <Box
-                        backgroundColor="green.100"
+                        backgroundColor="green.200"
                         borderRadius="lg"
                         boxShadow="xl"
                         pl={3}
@@ -202,7 +204,7 @@ function Docs() {
 
                 <Box>
                     <Box
-                        backgroundColor="purple.100"
+                        backgroundColor="purple.200"
                         borderRadius="lg"
                         boxShadow="xl"
                         pl={3}
@@ -246,7 +248,7 @@ function Docs() {
                     justify={'center'}
                     align={'center'}
 
-                    bgGradient={'linear(to-r, blue.500, transparent)'}>
+                    bgGradient={'linear(to-r, #EB9C34, #F8DB7BB5)'}>
                     <Stack maxW={'2xl'} align={'center'} spacing={6}>
 
                         <Heading color={'white'}>References:</Heading>
