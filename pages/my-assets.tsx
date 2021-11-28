@@ -340,23 +340,7 @@ function MyAssets() {
 
       {/* <Box height="300"></Box> */}
 
-      <Box
-        bg='gray.50'
-        color='gray.700'>
-        <Container
-          as={Stack}
-          maxW={'6xl'}
-          py={4}
-          direction={{ base: 'column', md: 'row' }}
-          spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'center', md: 'center' }}>
-          <Text>© 2020 Chakra Templates. All rights reserved</Text>
-          <Stack direction={'row'} spacing={6}>
 
-          </Stack>
-        </Container>
-      </Box>
 
 
     </ChakraProvider>
