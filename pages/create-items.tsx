@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import { useRouter } from "next/router";
 import { create as ipfsHttpClient } from 'ipfs-http-client'
+import styled from 'styled-components'
 import Web3Modal from "web3modal"
 import {
   nftaddress, nftmarketaddress
@@ -13,7 +14,7 @@ const client = ipfsHttpClient({ host: "ipfs.infura.io", port: 5001, protocol: "h
 
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
-import { ChakraProvider, Box, Container, Center, Stack, Heading, Text, Flex, Avatar, Image } from "@chakra-ui/react";
+import { ChakraProvider, GridItem, Grid, Box, Input, Container, Center, Stack, Heading, Text, Flex, Avatar, Image } from "@chakra-ui/react";
 
 function CreateItem() {
 
@@ -22,10 +23,12 @@ function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
   const router = useRouter()
+  const [show, setShow] = useState(false);
 
   async function onChange(e) {
     const file = e.target.files[0]
     try {
+      setShow(true)
       const added = await client.add(
         file,
         {
@@ -83,100 +86,83 @@ function CreateItem() {
     router.push('/')
   }
 
+
+  // ****
+  function showNFT() {
+    return (
+      <GridItem>
+        <Box boxSize="sm">
+          <Image className="rounded mt-4" boxSize="300px" objectFit="cover" src={fileUrl}/>
+        </Box>
+      </GridItem>
+    )
+  }
+
+  // ****
+  function uploadNFT() {
+    return(
+      <GridItem>     
+      <Box
+        py="90"
+        height="300px"
+        width="500px"
+        borderWidth="2px"
+        rounded="lg"
+        align="center"
+        justify="center"
+        bgColor="gray.100"
+        shadow="md"> 
+        <Heading size="lg" as="span">
+          Upload an NFT to create:
+        </Heading>
+        <Flex alignItems="center" px="120" as="span" >
+        
+          <input
+            type="file"
+            name="Asset"
+            className="my-4"
+            onChange={onChange}
+          />
+        </Flex>
+      </Box>
+  </GridItem>
+    )
+  }
+
+
+  const Button = styled.button`
+  background: black;
+  border-radius: 30px;
+  color: white;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+  `
+
+
   return (
     <ChakraProvider>
+           <div>
+        <Grid m={40} h="200px" templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={40}>
 
-      <Flex>
-      </Flex>
-      <Center py={2}
-        w={'full'}
-        justify={'center'}
-        px="4"
-        bgGradient={'linear(to-r, pink.400, transparent)'}>
-        <Box
-          py="90"
-          height="300px"
-          width="500px"
-          borderWidth="2px"
-          rounded="lg"
-          align="center"
-          justify="center"
-          bgColor="gray.100"
-          shadow="md">
-          <Heading size="lg" as="span">
-            Upload an NFT to create:
-          </Heading>
-          <Flex alignItems="center" px="120" as="span" >
-            <input
-              type="file"
-              name="Asset"
-              className="my-4"
-              onChange={onChange}
-            />
-          </Flex>
+              <GridItem>
+                <Stack spacing={10}>
+                  <Input variant="flushed" placeholder="Name" onChange={e => updateFormInput({ ...formInput, name: e.target.value })} />
+                  <Input variant="flushed" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })}/>
+                  <Input variant="flushed" placeholder="Price" onChange={e => updateFormInput({ ...formInput, price: e.target.value })}/>
+                </Stack>
+              </GridItem>
 
-          <Text as="span">
-            (.jpg files only please!)
-          </Text>
+              <GridItem>
+                {show ? showNFT() : uploadNFT()}
+              </GridItem>
+        </Grid>
+        <Box px={500}>
+          <Button onClick={createMarket} >
+              List NFT
+          </Button>
         </Box>
-
-        <Stack py="10" p="20" pt={5} align={'center'}>
-          <Center align="center" justify="center">
-            {
-              fileUrl && (
-                <img className="rounded mt-4" width="600" src={fileUrl} />
-              )
-            }
-          </Center>
-        </Stack>
-      </Center>
-
-      <div className="flex justify-center">
-        <div className="w-1/2 flex flex-col pb-12">
-          <input
-            placeholder="Asset Name"
-            className="mt-8 border rounded p-4"
-            onChange={e => updateFormInput({ ...formInput, name: e.target.value })}
-          />
-          <textarea
-            placeholder="Asset Description"
-            className="mt-2 border rounded p-4"
-            onChange={e => updateFormInput({ ...formInput, description: e.target.value })}
-          />
-          <input
-            placeholder="Asset Price in Eth"
-            className="mt-2 border rounded p-4"
-            onChange={e => updateFormInput({ ...formInput, price: e.target.value })}
-          />
-
-          <button onClick={createMarket} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">
-            Create Digital Asset
-          </button>
-        </div>
       </div>
-
-
-      <Box height="100"></Box>
-      <Box
-        bg='gray.50'
-        color='gray.700'>
-        <Container
-          as={Stack}
-          maxW={'6xl'}
-          py={4}
-          direction={{ base: 'column', md: 'row' }}
-          spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'center', md: 'center' }}>
-          <Text>© 2020 Chakra Templates. All rights reserved</Text>
-          <Stack direction={'row'} spacing={6}>
-
-          </Stack>
-        </Container>
-      </Box>
     </ChakraProvider>
-
-
   )
 }
 
