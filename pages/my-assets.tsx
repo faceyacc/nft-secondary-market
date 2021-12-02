@@ -74,6 +74,7 @@ function MyAssets() {
 
     <ChakraProvider>
       <Flex
+      
         w={'full'}
         h="800px"
         backgroundSize={'cover'}
@@ -113,7 +114,7 @@ function MyAssets() {
                 _hover={{ bg: 'yellow.200' }}
 
               >
-                <NextLink href={'/feedpreview'} passHref>
+                <NextLink href={'/'} passHref>
                   Browse NFTs
                 </NextLink>
               </Button>
@@ -169,7 +170,7 @@ function MyAssets() {
 
       {
         nfts.map((nft, i) => (
-          <HStack backgroundColor="blue.100" justify="center" p="0">
+          <HStack bgGradient={'linear(to-r, #EB9C34, #F8DB7BB5)'} justify="center" p="0">
             <Center justify="center" py={2}>
               <Box
                 role={'group'}

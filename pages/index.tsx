@@ -656,7 +656,7 @@ function Home() {
                   <Box color="white" width="full" height="10px"></Box>
                   <Stack direction={'row'} align={'center'} justify="center">
                     <Text color="white" fontWeight={800} fontSize={'2xl'} >
-                      3 ETH
+                      {nft.price} ETH
                     </Text>
                   </Stack>
                 </Box>

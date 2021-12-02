@@ -14,7 +14,7 @@ const client = ipfsHttpClient({ host: "ipfs.infura.io", port: 5001, protocol: "h
 
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
-import { ChakraProvider, GridItem, Grid, Box, Input, Container, Center, Stack, Heading, Text, Flex, Avatar, Image } from "@chakra-ui/react";
+import { ChakraProvider, Wrap, GridItem, Grid, Box, Input, Container, Center, Stack, Heading, Text, Flex, Avatar, Image } from "@chakra-ui/react";
 
 function CreateItem() {
 
@@ -92,7 +92,7 @@ function CreateItem() {
     return (
       <GridItem>
         <Box boxSize="sm">
-          <Image className="rounded mt-4" boxSize="300px" objectFit="cover" src={fileUrl}/>
+          <Image className="rounded mt-4" boxSize="300px" objectFit="cover" src={fileUrl} />
         </Box>
       </GridItem>
     )
@@ -100,32 +100,32 @@ function CreateItem() {
 
   // ****
   function uploadNFT() {
-    return(
-      <GridItem>     
-      <Box
-        py="90"
-        height="300px"
-        width="500px"
-        borderWidth="2px"
-        rounded="lg"
-        align="center"
-        justify="center"
-        bgColor="gray.100"
-        shadow="md"> 
-        <Heading size="lg" as="span">
-          Upload an NFT to create:
-        </Heading>
-        <Flex alignItems="center" px="120" as="span" >
-        
-          <input
-            type="file"
-            name="Asset"
-            className="my-4"
-            onChange={onChange}
-          />
-        </Flex>
-      </Box>
-  </GridItem>
+    return (
+      <GridItem>
+        <Box
+          py="90"
+          height="300px"
+          width="500px"
+          borderWidth="2px"
+          rounded="lg"
+          align="center"
+          justify="center"
+          bgColor="gray.100"
+          shadow="md">
+          <Heading size="lg" as="span">
+            Upload an NFT to create:
+          </Heading>
+          <Flex alignItems="center" px="120" as="span" >
+
+            <input
+              type="file"
+              name="Asset"
+              className="my-4"
+              onChange={onChange}
+            />
+          </Flex>
+        </Box>
+      </GridItem>
     )
   }
 
@@ -141,27 +141,31 @@ function CreateItem() {
 
   return (
     <ChakraProvider>
-           <div>
-        <Grid m={40} h="200px" templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={40}>
 
-              <GridItem>
-                <Stack spacing={10}>
-                  <Input variant="flushed" placeholder="Name" onChange={e => updateFormInput({ ...formInput, name: e.target.value })} />
-                  <Input variant="flushed" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })}/>
-                  <Input variant="flushed" placeholder="Price" onChange={e => updateFormInput({ ...formInput, price: e.target.value })}/>
-                </Stack>
-              </GridItem>
+      <Box bgGradient={'linear(to-r, #EB9C34, #F8DB7BB5)'} height="200px"></Box>
+      <Box align="top" height="1080px" bgGradient={'linear(to-r, #EB9C34, #F8DB7BB5)'}>
 
-              <GridItem>
-                {show ? showNFT() : uploadNFT()}
-              </GridItem>
+        <Grid justify="center" align="center" h="200px" templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={40}>
+          <GridItem >
+            <Stack spacing={10}>
+              <Input left="100px" variant="flushed" placeholder="Name" onChange={e => updateFormInput({ ...formInput, name: e.target.value })} />
+              <Input left="100px" variant="flushed" placeholder="Description" onChange={e => updateFormInput({ ...formInput, description: e.target.value })} />
+              <Input left="100px" variant="flushed" placeholder="Price" onChange={e => updateFormInput({ ...formInput, price: e.target.value })} />
+            </Stack>
+          </GridItem>
+
+          <GridItem>
+            {show ? showNFT() : uploadNFT()}
+          </GridItem>
         </Grid>
-        <Box px={500}>
+
+        <Box m={40} px={500}>
           <Button onClick={createMarket} >
-              List NFT
+            List NFT
           </Button>
         </Box>
-      </div>
+
+      </Box>
     </ChakraProvider>
   )
 }

@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 // import { useRouter } from "next/router";
 // import { create as ipfsHttpClient } from 'ipfs-http-client'
 import Web3Modal from "web3modal"
+
 import {
   nftaddress, nftmarketaddress
 } from '../config'
@@ -34,6 +35,8 @@ type nftType = {
   name: unknown
   desription: unknown
 }
+
+
 
 
 export default function CreatorDashboard() {
@@ -78,6 +81,23 @@ export default function CreatorDashboard() {
     setSold(soldItems)
     setNfts(items)
     setLoadingState('loaded')
+  }
+  async function buyNFTs(nft: nftType) {
+    // Request signature from user for transaction.
+    const web3Modal = new Web3Model()
+    const connection = await web3Modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
+    const signer = provider.getSigner()
+    const contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+  
+    // Prompts user to pay to complete transaction.
+    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
+    const transaction = await contract.createMarketSale(nftaddress, nft.tokenId, {
+      value: price
+    })
+    await transaction.wait()
+    loadNFTs()
+  
   }
   if (loadingState === 'loaded' && !nfts.length) return (
 
@@ -181,9 +201,9 @@ export default function CreatorDashboard() {
   )
   return (
 
-    <ChakraProvider>
+    <ChakraProvider >
 
-      <Center bgColor="blue.100" py={3}>
+      <Center bgGradient={'linear(to-r, #EB9C34, #F8DB7BB5)'} py={3}>
         <Box
           bgColor="white"
           maxW={'3000px'}
@@ -255,42 +275,94 @@ export default function CreatorDashboard() {
         <Heading p="5" size="lg" color={'gray.700'}>Created Items:</Heading>
       </Box>
 
-      <HStack backgroundColor="white" justify="center">
-        {
-          nfts.map((nft, i) => (
+      <HStack justify="center" align="center" spacing="40px">
+          <Wrap justify="center" align="center">
 
-            <Center justify="center" py={1} px="20px">
-              <Box
-                role={'group'}
-                p={10}
-                // width={'600px'}
-                w={'full'}
-                bg={"white"}
-                boxShadow={'2xl'}
-                rounded={'lg'}
-                pos={'relative'}
-                minH="500"
-                zIndex={1}>
 
-                <Stack pt={0} align={'center'}>
-                  <Image boxShadow={'xl'} size="md" minW="300" maxW="300" src={nft.image} />
-                  <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                    NFT Name: {nft.name} {nft.description}
-                  </Heading>
-                  <Stack direction={'column'} align={'center'}>
-                    <Text fontWeight={800} fontSize={'3xl'}>
-                      NFT Price: {nft.price} ETH
+
+            {nfts.map((nft) => (
+              <WrapItem>
+                <Box
+                  role={'group'}
+                  minH="425"
+                  minW="300px"
+                  w={'full'}
+                  bg={"gray.800"}
+                  boxShadow={'2xl'}
+                  rounded={'3xl'}
+                  pos={'relative'}
+                  zIndex={1}
+                >
+                  <Image
+                    position="relative"
+                    rounded="xl"
+                    size="lg"
+                    maxW="350px"
+                    minW="350px"
+                    src={nft.image} />
+                  <Box
+                    width="350px"
+                    height="75px"
+                    bgColor="black"
+                    opacity='.02'
+                    position="absolute"
+                    bottom="100px"
+                    _hover={{
+                      opacity: '.85',
+                      color: 'white'
+                    }}>
+                    <Heading justify="center" align="center" color="white" fontSize={'2xl'} fontWeight={500}>
+                      {nft.name}
+                    </Heading>
+                    <Text right="5px" color={'white'} fontSize={'sm'}>
+                      {nft.seller}
+                    </Text>
+                  </Box>
+                  <Box color="white" width="full" height="20px"></Box>
+                  <HStack justify="center">
+                    <Button
+                      fontSize={'lg'}
+                      rounded={'full'}
+                      bg={'gray.300'}
+                      color={'black'}
+                      boxShadow={'0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'}
+                      _hover={{
+                        bg: 'white',
+                      }}
+                      onClick={() => buyNFTs(nft)}>
+                      Buy
+                    </Button>
+
+                    <Button
+                      fontSize={'lg'}
+                      rounded={'full'}
+                      bg={'gray.300'}
+                      color={'black'}
+                      boxShadow={'0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'}
+                      _hover={{
+                        bg: 'white',
+                      }}
+                    >
+                      <NextLink href={'/preview'} passHref>
+                        Preview
+                      </NextLink>
+                    </Button>
+                  </HStack>
+                  <Box color="white" width="full" height="10px"></Box>
+                  <Stack direction={'row'} align={'center'} justify="center">
+                    <Text color="white" fontWeight={800} fontSize={'2xl'} >
+                      {nft.price} ETH
                     </Text>
                   </Stack>
-                </Stack>
+                </Box>
+              </WrapItem>
+            ))}
 
-              </Box>
-            </Center>
 
-          ))
-        }
 
-      </HStack>
+
+          </Wrap>
+        </HStack>
 
       {
         Boolean(sold.length) && (
