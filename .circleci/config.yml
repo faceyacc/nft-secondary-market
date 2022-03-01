@@ -12,8 +12,9 @@ jobs:
 
     environment:
       # SEMGREP_RULES: >- # more at semgrep.dev/explore
-        # p/security-audit
-        # p/secrets
+        p/security-audit
+        p/secrets
+        p/ci
 
         # Scan changed files in PRs, block on new issues only (existing issues ignored)
       # SEMGREP_BASELINE_REF: << parameters.diff_branch >>
